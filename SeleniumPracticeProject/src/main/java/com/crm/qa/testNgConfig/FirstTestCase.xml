@@ -7,7 +7,7 @@
     </listeners>
     
  <test name="testngTest">
- <parameter name="browser" value="firefox"/>
+ <parameter name="browser" value=ie/>
  <classes>
  	<class name="com.crm.qa.testcases.LoginTest">
 		<methods>
