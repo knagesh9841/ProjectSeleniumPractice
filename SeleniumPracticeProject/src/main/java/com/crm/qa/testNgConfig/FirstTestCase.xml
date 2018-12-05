@@ -7,7 +7,7 @@
     </listeners>
     
  <test name="testngTest">
- <parameter name="browser" value="ie"/>
+ <parameter name="browser" value="edge"/>
  <classes>
  	<class name="com.crm.qa.testcases.LoginTest">
 		<methods>
