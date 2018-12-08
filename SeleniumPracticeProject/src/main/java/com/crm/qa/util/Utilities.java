@@ -19,7 +19,7 @@ public class Utilities {
 	private static Logger Log = Logger.getLogger(Utilities.class.getName());
 	
 	/**
-	 * Wait for checking that an element is present on the DOM of a page and visible.Visibility means that the element is not only displayed but also has a height and width that isgreater than 0.
+	 * Wait for an element is present on the DOM of a page and visible.Visibility means that the element is not only displayed but also has a height and width that isgreater than 0.
 	 * @param driver
 	 * @param byElement
 	 * @param timeOutInSeconds
@@ -46,7 +46,7 @@ public class Utilities {
 	}
 	
 	/**
-	 * Wait for checking that an element is either invisible or not present on the DOM.
+	 * Wait for an element is either invisible or not present on the DOM.
 	 * @param driver
 	 * @param byElement
 	 * @param timeOutInSeconds
@@ -75,7 +75,7 @@ public class Utilities {
 	
 	
 	/**
-	 * Wait for checking that an element is present on the DOM of a page. This does not necessarily mean that the element is visible.
+	 * Wait for an element is present on the DOM of a page. This does not necessarily mean that the element is visible.
 	 * @param driver
 	 * @param byElement
 	 * @param timeOutInSeconds
@@ -101,7 +101,7 @@ public class Utilities {
 	
 	
 	/**
-	 * Wait for checking an element is visible and enabled such that you can click it.
+	 * Wait for  an element is visible and enabled such that you can click it.
 	 * @param driver
 	 * @param byElement
 	 * @param timeOutInSeconds
@@ -129,7 +129,7 @@ public class Utilities {
 	
 	
 	/**
-	 * Wait for checking the title of a page.
+	 * Wait for the title of a page.
 	 * @param driver
 	 * @param pageTitle
 	 * @param timeOutInSeconds
@@ -148,6 +148,34 @@ public class Utilities {
 		} catch (Exception e) {
 			
 			Log.error("-----------Page with Title \"+pageTitle+\" is not found in \"+timeOutInSeconds+\" seconds.-------------", e);
+			
+			return false;
+		}
+	
+	}
+	
+	
+	
+	/**
+	 * Wait for alert is present or Not.
+	 * @param driver
+	 * @param timeOutInSeconds
+	 * @return AlertIsPresentOrNot
+	 */
+	
+	
+	public static boolean waitForAlertIsPresent(WebDriver driver,int timeOutInSeconds)
+	{
+		try {
+			WebDriverWait wait = new WebDriverWait(driver, timeOutInSeconds);
+			wait.until(ExpectedConditions.alertIsPresent());
+			
+			Log.info("-----------Alert is found in "+timeOutInSeconds+" seconds.-------------");
+			return true;
+			
+		} catch (Exception e) {
+			
+			Log.error("----------Alert  is not found in "+timeOutInSeconds+" seconds.---------", e);
 			
 			return false;
 		}

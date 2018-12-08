@@ -14,6 +14,10 @@ public class LoginTest extends BaseTest{
 		  
 		  String atitle = loginPage_Object.loginToApplication("knagesh143s@gmail.com", "knagesh143s");
 		  loginPage_Object.verifyTitle(atitle, "Address Book");
+		  addrsPage_Object.fillAddressDetails();
+		  addrsPage_Object.verifyAddressDetails();
+		  addrsPage_Object.deleteAddressDetails();
+		  addrsPage_Object.verifyDeletedAddressDetails();
 		  atitle = homePage_Object.loginOutFromApplication();
 		  homePage_Object.verifyTitle(atitle, "Address Book - Sign In");
 		  
