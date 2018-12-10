@@ -1,14 +1,13 @@
 package com.crm.qa.pages;
 
 import org.apache.log4j.Logger;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
-
+import static com.crm.qa.objectrepository.ObjectRepository.*;
 import com.crm.qa.listeners.TestListener;
 import com.crm.qa.util.PropertyManager;
 import com.crm.qa.util.Utilities;
@@ -67,7 +66,7 @@ public class LoginPage {
 			Log.info("-----------Navigating to URL-------------");
 			Utilities.waitForPageTitleIs(driver, "Address Book", 30);
 			signIn.click();
-			Utilities.waitForElementVisible(driver, By.id("session_email"), 30);
+			Utilities.waitForElementVisible(driver, byLoginPage_userName, 30);
 			uname.clear();
 			uname.sendKeys(userName);
 			pwd.clear();
@@ -94,7 +93,7 @@ public class LoginPage {
 			if(aTitle.equals(eTitle))
 			{
 				Assert.assertTrue(true);
-				TestListener.pass("Home page should be Displayed Successfully after Login.", "Home page is Displayed Successfully after Login.", driver);
+				TestListener.pass("Home page should be Displayed Successfully after Login.", "Home page is Displayed Successfully after Login.", driver, true);
 				
 				Log.info("-----------Login Title Page is matched-------------");
 				

@@ -76,15 +76,24 @@ public class TestListener implements ITestListener{
 	 * @param ExpectValue
 	 * @param aValue
 	 * @param driver
+	 * @param attachScreenshot TODO
 	 */
 	
-	public static void pass(String ExpectValue,String aValue, WebDriver driver)
+	public static void pass(String ExpectValue,String aValue, WebDriver driver, boolean attachScreenshot)
 	{
 		
 		 try {
-				String screenshotPath = ScreenshotCapture.getScreenshot(driver, "screeshot");
-				//test.get().addScreenCaptureFromPath(screenshotPath);
-				test.get().pass(ExpectValue+"::"+aValue, MediaEntityBuilder.createScreenCaptureFromPath(screenshotPath).build());
+			 
+			 	if(attachScreenshot)
+			 	{
+			 		String screenshotPath = ScreenshotCapture.getScreenshot(driver, "screeshot");
+					//test.get().addScreenCaptureFromPath(screenshotPath);
+					test.get().pass(ExpectValue+"::"+aValue, MediaEntityBuilder.createScreenCaptureFromPath(screenshotPath).build());
+			 	}else
+			 	{
+			 		test.get().pass(ExpectValue+"::"+aValue);
+			 	}
+				
 			} catch (Exception e) {
 				
 				Log.warn("-------Exception Occured while Pass reporting-------");
@@ -108,6 +117,37 @@ public class TestListener implements ITestListener{
 			} catch (Exception e) {
 				
 				Log.warn("-------Exception Occured while Fail reporting-------");
+			}
+	}
+	
+	
+	/**
+	 * This method will used for Info reporting.
+	 * @param ExpectValue
+	 * @param aValue
+	 * @param driver
+	 * @param attachScreenshot TODO
+	 */
+	
+	public static void info(String ExpectValue,String aValue, WebDriver driver, boolean attachScreenshot)
+	{
+		
+		 try {
+			 
+			 	if(attachScreenshot)
+			 	{
+			 		String screenshotPath = ScreenshotCapture.getScreenshot(driver, "screeshot");
+					//test.get().addScreenCaptureFromPath(screenshotPath);
+					test.get().info(ExpectValue+"::"+aValue, MediaEntityBuilder.createScreenCaptureFromPath(screenshotPath).build());
+					
+			 	}else
+			 	{
+			 		test.get().info(ExpectValue+"::"+aValue);
+			 	}
+				
+			} catch (Exception e) {
+				
+				Log.warn("-------Exception Occured while Info reporting-------");
 			}
 	}
 

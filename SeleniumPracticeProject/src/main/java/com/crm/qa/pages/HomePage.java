@@ -1,14 +1,11 @@
 package com.crm.qa.pages;
 
 import org.apache.log4j.Logger;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
-
+import static com.crm.qa.objectrepository.ObjectRepository.*;
 import com.crm.qa.listeners.TestListener;
 import com.crm.qa.util.Utilities;
 
@@ -32,8 +29,6 @@ public class HomePage {
 		
 		//*********Web Elements*********
 		
-		@FindBy(how=How.XPATH,using=".//a[text()='Sign out']")
-		WebElement signOut;
 		
 
 				
@@ -47,7 +42,8 @@ public class HomePage {
 		public String loginOutFromApplication() 
 		{
 			try {
-				Utilities.waitForElementVisible(driver, By.xpath("//a[text()='Sign out']"), 30);
+				Utilities.waitForElementVisible(driver, byHomePage_signoutBtn, 30);
+				WebElement signOut = driver.findElement(byHomePage_signoutBtn);
 				signOut.click();
 				Log.info("-----------Clicked on Signout button-------------");
 				Utilities.waitForPageTitleIs(driver, "Address Book - Sign In", 30);
@@ -72,7 +68,7 @@ public class HomePage {
 				if(aTitle.equals(eTitle))
 				{
 					Assert.assertTrue(true);
-					TestListener.pass("Home page should be Displayed Successfully after Logout.", "Home page is Displayed Successfully after Logout.", driver);
+					TestListener.pass("Home page should be Displayed Successfully after Logout.", "Home page is Displayed Successfully after Logout.", driver, true);
 					Log.info("-----------Logout Title Page is matched-------------");
 					
 				}else

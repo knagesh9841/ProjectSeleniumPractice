@@ -13,7 +13,7 @@ import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
-
+import static com.crm.qa.objectrepository.ObjectRepository.*;
 import com.crm.qa.listeners.TestListener;
 import com.crm.qa.util.Utilities;
 
@@ -38,83 +38,69 @@ public class AddressPage {
 	
 	@FindBy(how=How.XPATH,using="//a[text()='Addresses']")
 	@CacheLookup
-	WebElement addressBtn;
+	public WebElement addressBtn;
 	
-	@FindBy(how=How.XPATH,using="//a[text()='New Address']")
-	@CacheLookup
-	WebElement newAddressBtn;
-	
-	@FindBy(how=How.ID,using="address_first_name")
-	@CacheLookup
-	WebElement fname;
 	
 	@FindBy(how=How.ID,using="address_last_name")
 	@CacheLookup
-	WebElement lname;
+	public WebElement lname;
 	
 	@FindBy(how=How.ID,using="address_street_address")
 	@CacheLookup
-	WebElement street;
+	public WebElement street;
 	
 	@FindBy(how=How.ID,using="address_secondary_address")
 	@CacheLookup
-	WebElement secondAddrs;
+	public WebElement secondAddrs;
 	
 	@FindBy(how=How.ID,using="address_city")
 	@CacheLookup
-	WebElement city;
+	public WebElement city;
 	
 	@FindBy(how=How.ID,using="address_state")
 	@CacheLookup
-	WebElement state;
+	public WebElement state;
 	
 	@FindBy(how=How.ID,using="address_zip_code")
 	@CacheLookup
-	WebElement zipCode;
+	public WebElement zipCode;
 	
 	@FindBy(how=How.XPATH,using="//input[@name='address[country]']")
 	@CacheLookup
-	List<WebElement> country;
+	public List<WebElement> country;
 	
 	@FindBy(how=How.ID,using="address_birthday")
 	@CacheLookup
-	WebElement birthDate;
+	public WebElement birthDate;
 	
 	@FindBy(how=How.ID,using="address_age")
 	@CacheLookup
-	WebElement age;
+	public WebElement age;
 	
 	@FindBy(how=How.ID,using="address_website")
 	@CacheLookup
-	WebElement website;
+	public WebElement website;
 	
 	@FindBy(how=How.ID,using="address_phone")
 	@CacheLookup
-	WebElement phone;
+	public WebElement phone;
 	
 	@FindBy(how=How.ID,using="address_interest_climb")
 	@CacheLookup
-	WebElement interestClimb;
+	public WebElement interestClimb;
 	
 	@FindBy(how=How.NAME,using="address[note]")
 	@CacheLookup
-	WebElement note;
+	public WebElement note;
 	
 	@FindBy(how=How.XPATH,using="//input[@name='commit']")
 	@CacheLookup
-	WebElement submitBtn;
+	public WebElement submitBtn;
 
-	@FindBy(how=How.XPATH,using="//div[@class='alert alert-notice']")
-	@CacheLookup
-	WebElement successMessage;
-	
 	@FindBy(how=How.XPATH,using="//a[text()='List']")
 	@CacheLookup
-	WebElement listButton;
+	public WebElement listButton;
 	
-	@FindBy(how=How.XPATH,using="//table[@class='table']//tbody/tr")
-	@CacheLookup
-	List<WebElement> tableRowAfterAdding;
 	
 	//*********Page Methods*********
 	
@@ -124,19 +110,26 @@ public class AddressPage {
 	
 	public void fillAddressDetails()
 	{
+		
+		
 		try {
 			
 			addressBtn.click();
 			
 			Log.info("-----------Clicked on Address button from login Home Page-------------");
 			
-			Utilities.waitForElementPresence(driver, By.xpath("//a[text()='New Address']"), 30);
+			Utilities.waitForElementPresence(driver, byAddressPage_newAddressBtn, 30);
+			
+			WebElement newAddressBtn = driver.findElement(byAddressPage_newAddressBtn);
+			
 			
 			newAddressBtn.click();
 			
 			Log.info("-----------Clicked on New Address button from login Home Page-------------");
 			
-			Utilities.waitForElementPresence(driver, By.name("address[first_name]"), 30);
+			Utilities.waitForElementPresence(driver, byAddressPage_firstName, 30);
+			
+			WebElement fname = driver.findElement(byAddressPage_firstName);
 			
 			fname.sendKeys("Nagesh");
 			lname.sendKeys("Kadam");
@@ -172,14 +165,17 @@ public class AddressPage {
 			
 			Log.info("-----------Clicked on Submit Button-------------");
 			
-			Utilities.waitForElementPresence(driver, By.xpath("//div[@class='alert alert-notice']"), 30);
+			Utilities.waitForElementPresence(driver, byAddressPage_successMsg, 30);
+			
+			WebElement successMessage = driver.findElement(byAddressPage_successMsg);
+			
 			
 			String aMessage = successMessage.getText();
 			
 			if(aMessage.equals(eMessage))
 			{
 				Assert.assertTrue(true);
-				TestListener.pass("Address should be successfully created.", "Address is successfully created.", driver);
+				TestListener.pass("Address should be successfully created.", "Address is successfully created.", driver, true);
 				
 				Log.info("-----------Address is successfully created-------------");
 				
@@ -205,20 +201,24 @@ public class AddressPage {
 	
 	public void verifyAddressDetails()
 	{
+		
+		
 		try {
 			
 			listButton.click();
 			
 			Log.info("-----------Clicked on List Button-------------");
 			
-			Utilities.waitForElementPresence(driver, By.xpath("//a[text()='New Address']"), 30);
+			Utilities.waitForElementPresence(driver, byAddressPage_newAddressBtn, 30);
+			
+			List<WebElement> tableRowAfterAdding = driver.findElements(byAddressPage_addrsTableRow);
 			
 			List<WebElement> tabledata = tableRowAfterAdding.get(0).findElements(By.tagName("td"));
 			
 			if(tabledata.get(0).getText().equals("Nagesh"))
 			{
 				Assert.assertTrue(true);
-				TestListener.pass("First Name should be Nagesh.", "First Name is "+tabledata.get(0).getText()+".", driver);
+				TestListener.info("First Name should be Nagesh.", "First Name is "+tabledata.get(0).getText()+".", driver, false);
 				
 				Log.info("-----------First Name is Nagesh.-------------");
 			}else
@@ -232,7 +232,7 @@ public class AddressPage {
 			if(tabledata.get(1).getText().equals("Kadam"))
 			{
 				Assert.assertTrue(true);
-				TestListener.pass("Last Name should be Kadam.", "Last Name is "+tabledata.get(1).getText()+".", driver);
+				TestListener.info("Last Name should be Kadam.", "Last Name is "+tabledata.get(1).getText()+".", driver, false);
 				
 				Log.info("-----------Last Name is Kadam.-------------");
 			}else
@@ -247,7 +247,7 @@ public class AddressPage {
 			if(tabledata.get(2).getText().equals("Tq & Dist:- Latur"))
 			{
 				Assert.assertTrue(true);
-				TestListener.pass("City Name should be Tq & Dist:-  Latur.", "City Name is "+tabledata.get(2).getText()+".", driver);
+				TestListener.info("City Name should be Tq & Dist:-  Latur.", "City Name is "+tabledata.get(2).getText()+".", driver, false);
 				
 				Log.info("-----------City Name is Tq & Dist:-  Latur.-------------");
 			}else
@@ -261,7 +261,7 @@ public class AddressPage {
 			if(tabledata.get(3).getText().equals("GA"))
 			{
 				Assert.assertTrue(true);
-				TestListener.pass("State Name should be GA.", "State Name is "+tabledata.get(2).getText()+".", driver);
+				TestListener.info("State Name should be GA.", "State Name is "+tabledata.get(2).getText()+".", driver, false);
 				
 				Log.info("-----------City Name is GA.-------------");
 			}else
@@ -287,7 +287,11 @@ public class AddressPage {
 	public void deleteAddressDetails()
 	{
 		
+		
 		try {
+			
+			List<WebElement> tableRowAfterAdding = driver.findElements(byAddressPage_addrsTableRow);
+			
 			int size  = tableRowAfterAdding.size();
 			boolean flag = false;
 			
@@ -314,7 +318,7 @@ public class AddressPage {
 			if(flag)
 			{
 				Assert.assertTrue(true);
-				TestListener.pass("Address wih Name Nagesh should be deleted successfully.", "Address wih Name Nagesh is deleted successfully..", driver);
+				TestListener.pass("Address wih Name Nagesh should be deleted successfully.", "Address wih Name Nagesh is deleted successfully..", driver, true);
 				
 				Log.info("-----------Address wih Name Nagesh is deleted successfully.-------------");
 				
@@ -339,11 +343,15 @@ public class AddressPage {
 	
 	public void verifyDeletedAddressDetails()
 	{
+		
+		
 		try {
 			
-			Utilities.waitForElementPresence(driver, By.xpath("//div[@class='alert alert-notice']"), 30);
+			Utilities.waitForElementPresence(driver, byAddressPage_successMsg, 30);
 			
-			List<WebElement> row = driver.findElements(By.xpath("//table[@class='table']//tbody/tr"));
+			List<WebElement> tableRowAfterAdding = driver.findElements(byAddressPage_addrsTableRow);
+			
+			List<WebElement> row = driver.findElements(byAddressPage_addrsTableRow);
 			int rowSize = row.size();
 			boolean flag = true;
 			if(rowSize==0)
@@ -365,7 +373,7 @@ public class AddressPage {
 			if(flag)
 			{
 				Assert.assertTrue(true);
-				TestListener.pass("Address wih Name Nagesh should not be present in table.", "Address wih Name Nagesh is not present in table.", driver);
+				TestListener.pass("Address wih Name Nagesh should not be present in table.", "Address wih Name Nagesh is not present in table.", driver, true);
 				
 				Log.info("-----------Address wih Name Nagesh is not  present in table.-------------");
 			}else
