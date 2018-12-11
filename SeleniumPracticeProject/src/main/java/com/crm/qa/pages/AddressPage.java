@@ -14,6 +14,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import static com.crm.qa.objectrepository.ObjectRepository.*;
+
+import com.crm.qa.exceltestdata.ExcelUtils;
 import com.crm.qa.listeners.TestListener;
 import com.crm.qa.util.Utilities;
 
@@ -130,6 +132,9 @@ public class AddressPage {
 			Utilities.waitForElementPresence(driver, byAddressPage_firstName, 30);
 			
 			WebElement fname = driver.findElement(byAddressPage_firstName);
+			
+			ExcelUtils.getCellData("ExcelTestDataFile.xlsx", "contacts", 1, "First Name");
+			ExcelUtils.getCellData("ExcelTestDataFile.xlsx", "contacts", 1, "Last Name");
 			
 			fname.sendKeys("Nagesh");
 			lname.sendKeys("Kadam");
