@@ -1,5 +1,6 @@
 package com.crm.qa.pages;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -26,7 +27,8 @@ public class AddressPage {
 	private WebDriver driver;
     private static Logger Log = Logger.getLogger(AddressPage.class.getName());
     String eMessage = "Address was successfully created.";
-	
+	HashMap<String, String> testData = new HashMap<String,String>();
+	String testDataHolder;
 	
 	//*********Constructor*********
 	
@@ -116,6 +118,8 @@ public class AddressPage {
 		
 		try {
 			
+			testData = ExcelUtils.loadData("ExcelTestDataFile.xlsx", "contacts", 1);
+			
 			addressBtn.click();
 			
 			Log.info("-----------Clicked on Address button from login Home Page-------------");
@@ -133,38 +137,59 @@ public class AddressPage {
 			
 			WebElement fname = driver.findElement(byAddressPage_firstName);
 			
-			ExcelUtils.getCellData("ExcelTestDataFile.xlsx", "contacts", 1, "First Name");
-			ExcelUtils.getCellData("ExcelTestDataFile.xlsx", "contacts", 1, "Last Name");
+			testDataHolder = ExcelUtils.getData(testData, "First Name");
+			fname.sendKeys(testDataHolder);
 			
-			fname.sendKeys("Nagesh");
-			lname.sendKeys("Kadam");
-			street.sendKeys("Datta Mandir Road");
-			secondAddrs.sendKeys("Wanjarkheda");
-			city.sendKeys("Tq & Dist:-  Latur");
+			testDataHolder = ExcelUtils.getData(testData, "Last Name");
+			lname.sendKeys(testDataHolder);
 			
+			testDataHolder = ExcelUtils.getData(testData, "Street");
+			street.sendKeys(testDataHolder);
+			
+			testDataHolder = ExcelUtils.getData(testData, "Secondary Address");
+			secondAddrs.sendKeys(testDataHolder);
+			
+			testDataHolder = ExcelUtils.getData(testData, "City");
+			city.sendKeys(testDataHolder);
+			
+			testDataHolder = ExcelUtils.getData(testData, "State");
 			Select stateToSelect = new Select(state);
+			stateToSelect.selectByValue(testDataHolder);
 			
-			stateToSelect.selectByValue("GA");
+			testDataHolder = ExcelUtils.getData(testData, "ZipCode");
+			zipCode.sendKeys(testDataHolder);
 			
-			zipCode.sendKeys("413 511");
-			
-			if(!country.get(0).isSelected())
+			testDataHolder = ExcelUtils.getData(testData, "Country");
+			if(testDataHolder.equals("United State"))
 			{
-				country.get(0).click();
+				if(!country.get(0).isSelected())
+				{
+					country.get(0).click();
+				}
 			}
 			
-			age.sendKeys("28");
+			
+			testDataHolder = ExcelUtils.getData(testData, "Age");
+			age.sendKeys(testDataHolder);
 
-			website.sendKeys("http://a.testaddressbook.com/addresses/new");
+			testDataHolder = ExcelUtils.getData(testData, "Website");
+			website.sendKeys(testDataHolder);
 			
-			phone.sendKeys("7972535940");
+			testDataHolder = ExcelUtils.getData(testData, "Phone");
+			phone.sendKeys(testDataHolder);
 			
-			if(!interestClimb.isSelected())
+			
+			testDataHolder = ExcelUtils.getData(testData, "Interest");
+			if(testDataHolder.equals("Climb"))
 			{
-				interestClimb.click();
+				if(!interestClimb.isSelected())
+				{
+					interestClimb.click();
+				}
 			}
 			
-			note.sendKeys("Address Added Successfully");
+			testDataHolder = ExcelUtils.getData(testData, "Note");
+			note.sendKeys(testDataHolder);
 			
 			submitBtn.click();
 			
@@ -210,6 +235,8 @@ public class AddressPage {
 		
 		try {
 			
+			testData = ExcelUtils.loadData("ExcelTestDataFile.xlsx", "contacts", 1);
+			
 			listButton.click();
 			
 			Log.info("-----------Clicked on List Button-------------");
@@ -220,7 +247,9 @@ public class AddressPage {
 			
 			List<WebElement> tabledata = tableRowAfterAdding.get(0).findElements(By.tagName("td"));
 			
-			if(tabledata.get(0).getText().equals("Nagesh"))
+			testDataHolder = ExcelUtils.getData(testData, "First Name");
+			
+			if(tabledata.get(0).getText().equals(testDataHolder))
 			{
 				Assert.assertTrue(true);
 				TestListener.info("First Name should be Nagesh.", "First Name is "+tabledata.get(0).getText()+".", driver, false);
@@ -234,7 +263,9 @@ public class AddressPage {
 				Log.info("-----------First Name is Not Matched.-------------");
 			}
 			
-			if(tabledata.get(1).getText().equals("Kadam"))
+			testDataHolder = ExcelUtils.getData(testData, "Last Name");
+			
+			if(tabledata.get(1).getText().equals(testDataHolder))
 			{
 				Assert.assertTrue(true);
 				TestListener.info("Last Name should be Kadam.", "Last Name is "+tabledata.get(1).getText()+".", driver, false);
@@ -248,8 +279,9 @@ public class AddressPage {
 				Log.info("-----------Last Name is Not Matched.-------------");
 			}
 			
+			testDataHolder = ExcelUtils.getData(testData, "City");
 		
-			if(tabledata.get(2).getText().equals("Tq & Dist:- Latur"))
+			if(tabledata.get(2).getText().equals(testDataHolder))
 			{
 				Assert.assertTrue(true);
 				TestListener.info("City Name should be Tq & Dist:-  Latur.", "City Name is "+tabledata.get(2).getText()+".", driver, false);
@@ -263,7 +295,9 @@ public class AddressPage {
 				Log.info("-----------City Name is Not Matched.-------------");
 			}
 			
-			if(tabledata.get(3).getText().equals("GA"))
+			testDataHolder = ExcelUtils.getData(testData, "State");
+			
+			if(tabledata.get(3).getText().equals(testDataHolder))
 			{
 				Assert.assertTrue(true);
 				TestListener.info("State Name should be GA.", "State Name is "+tabledata.get(2).getText()+".", driver, false);
@@ -277,6 +311,11 @@ public class AddressPage {
 				Log.info("-----------State Name is Not Matched.-------------");
 			}
 			
+			
+			String colHeader [] = {"First Name","Last Name","City","State"};
+			String colValue [] = {tabledata.get(0).getText(),tabledata.get(1).getText(),tabledata.get(2).getText(),tabledata.get(3).getText()};
+			
+			ExcelUtils.writeDataToExcelFile("ExcelWriteTestDataFile.xlsx", "contacts", 1, colHeader, colValue);
 			
 			
 		} catch (Exception e) {

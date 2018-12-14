@@ -7,7 +7,7 @@ public class LoginTest extends BaseTest{
 
 	private static Logger Log = Logger.getLogger(LoginTest.class.getName());
 		
-	  @Test
+	  @Test(description="Login TO Application Enter Address,Verify Address,Delete Address,Verify Deleted Address.")
 	  public void basicTest() throws InterruptedException {
 		
 		  Log.info("-----------Execution started for Method basicTest.-------------");
