@@ -120,7 +120,8 @@ public class AddressPage {
 			
 			testData = ExcelUtils.loadData("ExcelTestDataFile.xlsx", "contacts", 1);
 			
-			addressBtn.click();
+			
+			Utilities.clickByJavaScriptExecutor(driver, addressBtn);
 			
 			Log.info("-----------Clicked on Address button from login Home Page-------------");
 			

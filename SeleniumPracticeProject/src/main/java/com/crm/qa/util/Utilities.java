@@ -1,6 +1,7 @@
 package com.crm.qa.util;
 
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.JavascriptExecutor;
 
 import java.util.concurrent.TimeUnit;
 
@@ -180,6 +181,24 @@ public class Utilities {
 			return false;
 		}
 	
+	}
+	
+	/**
+	 * This method is used to click by JavaScriptExecutor.
+	 * @param driver TODO
+	 * @param elementToClick TODO
+	 */
+	
+	public static void clickByJavaScriptExecutor(WebDriver driver, WebElement elementToClick)
+	{
+		try {
+			
+			JavascriptExecutor js = (JavascriptExecutor)driver;
+			js.executeScript("arguments[0].click();", elementToClick);
+			
+		} catch (Exception e) {
+			Log.error("---------- Exception Occured while Click by JavaScriptExecutor.---------", e);
+		}
 	}
 	
 	/**
