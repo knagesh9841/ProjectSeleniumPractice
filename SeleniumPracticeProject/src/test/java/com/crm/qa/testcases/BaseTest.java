@@ -4,6 +4,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 
 import com.crm.qa.pages.AddressPage;
+import com.crm.qa.pages.FrameTestingPage;
 import com.crm.qa.pages.HomePage;
 import com.crm.qa.pages.LoginPage;
 import com.crm.qa.util.BrowserFactory;
@@ -18,6 +19,7 @@ public class BaseTest {
 	LoginPage loginPage_Object;
 	HomePage homePage_Object;
 	AddressPage addrsPage_Object;
+	FrameTestingPage framepage_Object;
 	private static Logger Log = Logger.getLogger(BaseTest.class.getName());
 	
   @BeforeTest
@@ -31,6 +33,7 @@ public class BaseTest {
 	  loginPage_Object = new LoginPage(driver);
 	  homePage_Object = new HomePage(driver);
 	  addrsPage_Object = new AddressPage(driver);
+	  framepage_Object = new FrameTestingPage(driver);
 	  
 	  Log.info("-----------Page object is initialized.-------------");
 	  

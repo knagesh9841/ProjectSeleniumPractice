@@ -6,7 +6,7 @@
         <listener class-name="com.crm.qa.listeners.TestListener"/>
     </listeners>
     
- <test name="testngTest">
+<!--  <test name="testngTest">
  <parameter name="browser" value="edge"/>
  <classes>
  	<class name="com.crm.qa.testcases.LoginTest">
@@ -16,5 +16,19 @@
 	</class>
 
  </classes>
+ </test> -->
+ 
+ <test name="testngTest">
+ <parameter name="browser" value="edge"/>
+ <classes>
+ 	<class name="com.crm.qa.testcases.FrameTest">
+		<methods>
+            <include name="frameTest"></include> 
+        </methods>
+	</class>
+
+ </classes>
  </test>
+ 
+ 
 </suite>
