@@ -20,7 +20,6 @@ public class FrameTestingPage {
 	
 		private WebDriver driver;
 	    private static Logger Log = Logger.getLogger(FrameTestingPage.class.getName());
-	    String eMessage = "Address was successfully created.";
 		HashMap<String, String> testData = new HashMap<String,String>();
 		String testDataHolder;
 		

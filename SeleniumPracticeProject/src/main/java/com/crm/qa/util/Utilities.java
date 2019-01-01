@@ -40,7 +40,7 @@ public class Utilities {
 			
 		} catch (Exception e) {
 			
-			Log.error("----------Element is not found in "+timeOutInSeconds+" seconds.---------", e);
+			Log.error("----------Element is not found in "+timeOutInSeconds+" seconds.---------");
 			return false;
 		}
 	
@@ -67,7 +67,7 @@ public class Utilities {
 			
 		} catch (Exception e) {
 			
-			Log.error("----------Element is not found in "+timeOutInSeconds+" seconds.---------", e);
+			Log.error("----------Element is not found in "+timeOutInSeconds+" seconds.---------");
 			
 			return false;
 		}
@@ -94,7 +94,7 @@ public class Utilities {
 			
 		} catch (Exception e) {
 			
-			Log.error("----------Element is not found in "+timeOutInSeconds+" seconds.---------", e);
+			Log.error("----------Element is not found in "+timeOutInSeconds+" seconds.---------");
 			return false;
 		}
 	
@@ -121,7 +121,7 @@ public class Utilities {
 			
 		} catch (Exception e) {
 			
-			Log.error("----------Element is not found in "+timeOutInSeconds+" seconds.---------", e);
+			Log.error("----------Element is not found in "+timeOutInSeconds+" seconds.---------");
 			
 			return false;
 		}
@@ -148,7 +148,7 @@ public class Utilities {
 			
 		} catch (Exception e) {
 			
-			Log.error("-----------Page with Title \"+pageTitle+\" is not found in \"+timeOutInSeconds+\" seconds.-------------", e);
+			Log.error("-----------Page with Title "+pageTitle+" is not found in "+timeOutInSeconds+" seconds.-------------");
 			
 			return false;
 		}
@@ -176,12 +176,14 @@ public class Utilities {
 			
 		} catch (Exception e) {
 			
-			Log.error("----------Alert  is not found in "+timeOutInSeconds+" seconds.---------", e);
+			Log.error("----------Alert  is not found in "+timeOutInSeconds+" seconds.---------");
 			
 			return false;
 		}
 	
 	}
+	
+
 	
 	/**
 	 * This method is used to click by JavaScriptExecutor.
@@ -197,9 +199,30 @@ public class Utilities {
 			js.executeScript("arguments[0].click();", elementToClick);
 			
 		} catch (Exception e) {
-			Log.error("---------- Exception Occured while Click by JavaScriptExecutor.---------", e);
+			Log.error("---------- Exception Occured while Click by JavaScriptExecutor.---------");
 		}
 	}
+	
+	
+	
+	/**
+	 * This method is used to ScrollInto View By JavaScriptExecutor.
+	 * @param driver TODO
+	 * @param elementToScroll TODO
+	 */
+	
+	public static void scrollIntoViewByJavaScriptExecutor(WebDriver driver, WebElement elementToScroll)
+	{
+		try {
+			
+			JavascriptExecutor js = (JavascriptExecutor)driver;
+			js.executeScript("arguments[0].scrollIntoView(true);", elementToScroll);
+			
+		} catch (Exception e) {
+			Log.error("---------- Exception Occured while ScrollInto View By JavaScriptExecutor.---------");
+		}
+	}
+	
 	
 	/**
 	 * This will maximize the window

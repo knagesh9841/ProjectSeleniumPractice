@@ -7,6 +7,7 @@ import com.crm.qa.pages.AddressPage;
 import com.crm.qa.pages.FrameTestingPage;
 import com.crm.qa.pages.HomePage;
 import com.crm.qa.pages.LoginPage;
+import com.crm.qa.pages.WindowTestingPage;
 import com.crm.qa.util.BrowserFactory;
 import org.apache.log4j.Logger;
 import org.apache.log4j.xml.DOMConfigurator;
@@ -20,6 +21,7 @@ public class BaseTest {
 	HomePage homePage_Object;
 	AddressPage addrsPage_Object;
 	FrameTestingPage framepage_Object;
+	WindowTestingPage windowpage_Object;
 	private static Logger Log = Logger.getLogger(BaseTest.class.getName());
 	
   @BeforeTest
@@ -34,6 +36,7 @@ public class BaseTest {
 	  homePage_Object = new HomePage(driver);
 	  addrsPage_Object = new AddressPage(driver);
 	  framepage_Object = new FrameTestingPage(driver);
+	  windowpage_Object = new WindowTestingPage(driver);
 	  
 	  Log.info("-----------Page object is initialized.-------------");
 	  
