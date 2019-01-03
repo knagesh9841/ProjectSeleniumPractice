@@ -1,15 +1,22 @@
 package com.crm.qa.pages;
 
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
@@ -102,9 +109,41 @@ public class WindowTestingPage {
 					
 					if(aTitle.equals(titleName))
 					{
-						Log.info("----------Switched to Window using Title Successfull.-----------");
+						
+						Log.info("--------------Switched to Window using Title Successfull.---------------------");
+						
+						List<WebElement> allLinks = new ArrayList<WebElement>();
+						
+						allLinks = windowDriver.findElements(By.tagName("a"));
+						
+						int workLinks=0,brokenLinks=0;
+						
+						Log.info("Total no of links = "+allLinks.size()+"");
+						
+						for(WebElement links:allLinks)
+						{
+							if((links.getAttribute("href")!=null))
+							{
+								workLinks ++;
+							}else
+							{
+								brokenLinks++;
+							}
+							
+							try {
+								Log.info("URL: " + links.getAttribute("href")+" returned " + isLinkBroken(new URL(links.getAttribute("href"))));
+							} catch (Exception e) {
+								Log.info("At " + links.getAttribute("innerHTML") + " Exception occured -&gt; " + e.getMessage());
+							}
+						}
+						
+						Log.info("No of Working links = "+workLinks+"");
+						Log.info("No of Broken links = "+brokenLinks+"");
+						
 						TestListener.info("New opened Window Title should be "+titleName+".", "New opened Window Title is "+aTitle+".", windowDriver, true);
-						driver.close();
+						
+						windowDriver.close();
+						
 					}
 				}
 			}
@@ -128,11 +167,83 @@ public class WindowTestingPage {
 					{
 						
 						Log.info("--------------Switched to Tab using Title Successfull.---------------------");
+						
+						List<WebElement> allLinks = new ArrayList<WebElement>();
+						
+						allLinks = windowDriver.findElements(By.tagName("a"));
+						
+						int workLinks=0,brokenLinks=0;
+						
+						Log.info("Total no of links = "+allLinks.size()+"");
+						
+						for(WebElement links:allLinks)
+						{
+							if((links.getAttribute("href")!=null))
+							{
+								workLinks ++;
+							}else
+							{
+								brokenLinks++;
+							}
+							
+							try {
+								Log.info("URL: " + links.getAttribute("href")+" returned " + isLinkBroken(new URL(links.getAttribute("href"))));
+							} catch (Exception e) {
+								Log.info("At " + links.getAttribute("innerHTML") + " Exception occured -&gt; " + e.getMessage());
+							}
+						}
+						
+						Log.info("No of Working links = "+workLinks+"");
+						Log.info("No of Broken links = "+brokenLinks+"");
+						
 						TestListener.info("New opened Tab Title should be "+titleName+".", "New opened tab Title is "+aTitle+".", windowDriver, true);
-						driver.close();
+						
+						windowDriver.close();
 					}
 				}
 			}
+			
+			
+			/**
+			 * This method will used to find Broken link.
+			 * @param url
+			 * @return
+			 * @throws Exception
+			 */
+			 
+			
+			public static String isLinkBroken(URL url) throws Exception
+			{
+
+				String response = "";
+
+				HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+
+				try
+
+				{
+
+					connection.connect();
+
+					response = connection.getResponseMessage();         
+
+					connection.disconnect();
+
+					return response;
+
+				}
+
+				catch(Exception exp)
+
+				{
+
+					return exp.getMessage();
+
+				}   
+
+			}
+			
+			
 			
 			/**
 			 * This method is used to Window Switch testing
@@ -205,7 +316,8 @@ public class WindowTestingPage {
 							
 						}else
 						{
-							newWindowBtn.click();
+							Actions act = new Actions(driver);
+							act.keyDown(Keys.SHIFT).click(newWindowBtn).build().perform();
 							Utilities.waitForPageTitleIs(driver, "Google", 30);
 							switchToWindowUsingTitle("Google");
 						}
