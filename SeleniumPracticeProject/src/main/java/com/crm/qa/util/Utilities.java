@@ -2,7 +2,9 @@ package com.crm.qa.util;
 
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoSuchElementException;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.log4j.Logger;
@@ -11,7 +13,10 @@ import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import com.google.common.base.Function;
 
 
 
@@ -30,20 +35,21 @@ public class Utilities {
 	public static boolean waitForElementVisible(WebDriver driver,By byElement,int timeOutInSeconds)
 	{
 		try {
+
 			WebDriverWait wait = new WebDriverWait(driver, timeOutInSeconds);
-			wait.until(ExpectedConditions.visibilityOfElementLocated(byElement));
-			WebElement element = driver.findElement(byElement);
+			WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(byElement));
+
+			Log.info("-----------Element is Visible in "+timeOutInSeconds+" seconds.-------------");
 			
-			 Log.info("-----------Element is found in "+timeOutInSeconds+" seconds.-------------");
-			 
 			return element.isDisplayed();
-			
+
 		} catch (Exception e) {
+
+			Log.error("----------Element is Not Visible in "+timeOutInSeconds+" seconds.---------");
 			
-			Log.error("----------Element is not found in "+timeOutInSeconds+" seconds.---------");
 			return false;
 		}
-	
+
 	}
 	
 	/**
@@ -58,16 +64,16 @@ public class Utilities {
 	{
 		try {
 			WebDriverWait wait = new WebDriverWait(driver, timeOutInSeconds);
-			wait.until(ExpectedConditions.invisibilityOfElementLocated(byElement));
-			WebElement element = driver.findElement(byElement);
 			
-			 Log.info("-----------Element is found in "+timeOutInSeconds+" seconds.-------------");
+			boolean elementIsPresent = wait.until(ExpectedConditions.invisibilityOfElementLocated(byElement));
+			
+			Log.info("-----------Element is Invisible in "+timeOutInSeconds+" seconds.-------------");
 			 
-			return element.isDisplayed();
+			return elementIsPresent;
 			
 		} catch (Exception e) {
 			
-			Log.error("----------Element is not found in "+timeOutInSeconds+" seconds.---------");
+			Log.error("----------Element is not invisible in "+timeOutInSeconds+" seconds.---------");
 			
 			return false;
 		}
@@ -87,14 +93,16 @@ public class Utilities {
 	{
 		try {
 			WebDriverWait wait = new WebDriverWait(driver, timeOutInSeconds);
-			wait.until(ExpectedConditions.presenceOfElementLocated(byElement));
-			WebElement element = driver.findElement(byElement);
-		    Log.info("-----------Element is found in "+timeOutInSeconds+" seconds.-------------");
+			
+			WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(byElement));
+			
+		    Log.info("-----------Element is found in DOM "+timeOutInSeconds+" seconds.-------------");
+		    
 			return element.isDisplayed();
 			
 		} catch (Exception e) {
 			
-			Log.error("----------Element is not found in "+timeOutInSeconds+" seconds.---------");
+			Log.error("----------Element is not found in DOM "+timeOutInSeconds+" seconds.---------");
 			return false;
 		}
 	
@@ -114,14 +122,15 @@ public class Utilities {
 	{
 		try {
 			WebDriverWait wait = new WebDriverWait(driver, timeOutInSeconds);
-			wait.until(ExpectedConditions.elementToBeClickable(byElement));
-			WebElement element = driver.findElement(byElement);
-			Log.info("-----------Element is found in "+timeOutInSeconds+" seconds.-------------");
+			WebElement element = wait.until(ExpectedConditions.elementToBeClickable(byElement));
+			
+			Log.info("-----------Element is found in "+timeOutInSeconds+" seconds.Click operation can be performed.-------------");
+			
 			return element.isDisplayed();
 			
 		} catch (Exception e) {
 			
-			Log.error("----------Element is not found in "+timeOutInSeconds+" seconds.---------");
+			Log.error("----------Element is not found in "+timeOutInSeconds+" seconds.Click operation cannot be performed---------");
 			
 			return false;
 		}
@@ -142,17 +151,17 @@ public class Utilities {
 	{
 		try {
 			WebDriverWait wait = new WebDriverWait(driver, timeOutInSeconds);
-			wait.until(ExpectedConditions.titleIs(pageTitle));
-			 Log.info("-----------Page with Title "+pageTitle+" is found in "+timeOutInSeconds+" seconds.-------------");
-			return true;
-			
+			boolean titlePresent = wait.until(ExpectedConditions.titleIs(pageTitle));
+			Log.info("-----------Page with Title "+pageTitle+" is found in "+timeOutInSeconds+" seconds.-------------");
+			return titlePresent;
+
 		} catch (Exception e) {
-			
+
 			Log.error("-----------Page with Title "+pageTitle+" is not found in "+timeOutInSeconds+" seconds.-------------");
-			
+
 			return false;
 		}
-	
+
 	}
 	
 	
@@ -183,6 +192,111 @@ public class Utilities {
 	
 	}
 	
+	/**
+	 * Wait for an All element is present on the DOM of a page and visible.Visibility means that the element is not only displayed but also has a height and width that isgreater than 0.
+	 * @param driver
+	 * @param element
+	 * @param timeOutInSeconds TODO
+	 * @return
+	 */
+	public static boolean waitForAllElementVisible(WebDriver driver, By element, int timeOutInSeconds)
+	{
+		List<WebElement> Pageelements =null;
+
+		try {
+
+			WebDriverWait wait = new WebDriverWait(driver, timeOutInSeconds);
+			Pageelements = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(element));
+
+			Log.info("-----------All Elements are Visible in "+timeOutInSeconds+" seconds.-------------");
+			
+			return Pageelements.get(0).isDisplayed();
+
+
+
+		} catch (Exception e) {
+
+			Log.error("----------All Elements are Not Visible in "+timeOutInSeconds+" seconds.---------");
+
+			return false;
+		}
+
+	}
+	
+	
+	/**
+	 * Wait for all element is present on the DOM of a page. This does not necessarily mean that the element is visible.
+	 * @param driver
+	 * @param element
+	 * @param timeOutInSeconds TODO
+	 * @return
+	 */
+	public static boolean waitForAllElementsPresence(WebDriver driver, By element, int timeOutInSeconds)
+	{
+		List<WebElement> Pageelements =null;
+
+		try {
+
+			WebDriverWait wait = new WebDriverWait(driver, timeOutInSeconds);
+			Pageelements = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(element));
+
+			Log.info("-----------All Elements are Visible in DOM "+timeOutInSeconds+" seconds.-------------");
+			
+			return Pageelements.get(0).isDisplayed();
+
+
+
+		} catch (Exception e) {
+
+			Log.error("----------All Elements are Not Visible in DOM "+timeOutInSeconds+" seconds.---------");
+
+			return false;
+		}
+
+	}
+	
+	/**
+	 * This method use to wait for element using Fluentwait and it will return true if element is Displayed.
+	 * @param driver TODO
+	 * @param elementToFind TODO
+	 * @return
+	 */
+	
+	public static boolean checkForElementDisplayedusingFluentWait(WebDriver driver, By elementToFind)
+	{
+		boolean sFlag = false;
+		 try {
+			FluentWait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+			            .withMessage("Timeout occured!") 
+			            .ignoring(NoSuchElementException.class); 
+			 
+			 Function<WebDriver, Boolean> function = new Function<WebDriver, Boolean>()
+				{
+					public Boolean apply(WebDriver arg0) {
+						WebElement element = arg0.findElement(elementToFind);
+						
+						if(element!=null)
+						{
+							return true;
+						}
+						return false;
+					}
+				};
+
+				sFlag = wait.until(function);
+				
+				Log.info("-----------Element is found.-------------");
+				
+		} catch (Exception e) {
+			
+			Log.error("----------Element is Not Found "+e.getMessage()+".---------");
+			
+		}
+		 
+		 return sFlag;
+	}
+
+
 
 	
 	/**
@@ -235,9 +349,15 @@ public class Utilities {
 		Point pnt = new Point(0, 0);
 		BrowserFactory.getDriver().manage().window().setSize(dim);
 		BrowserFactory.getDriver().manage().window().setPosition(pnt);
-		BrowserFactory.getDriver().manage().timeouts().implicitlyWait(Long.valueOf(PropertyManager.getInstance().getConfigTimeData("implicitlywait")), TimeUnit.SECONDS);
-		BrowserFactory.getDriver().manage().deleteAllCookies();
 		Log.info("-----------Window is Maximized.-------------");
+		BrowserFactory.getDriver().manage().timeouts().implicitlyWait(Long.valueOf(PropertyManager.getInstance().getConfigTimeData("implicitlywait")), TimeUnit.SECONDS);
+		Log.info("-----------implicitly Wait is set to "+PropertyManager.getInstance().getConfigTimeData("implicitlywait")+" Seconds.-------------");
+		BrowserFactory.getDriver().manage().timeouts().pageLoadTimeout(Long.valueOf(PropertyManager.getInstance().getConfigTimeData("pageLoadTimeout")), TimeUnit.SECONDS);
+		Log.info("-----------Page Load Timeout is set to "+PropertyManager.getInstance().getConfigTimeData("pageLoadTimeout")+" Seconds.-------------");
+		BrowserFactory.getDriver().manage().timeouts().setScriptTimeout(Long.valueOf(PropertyManager.getInstance().getConfigTimeData("scriptTimeOut")), TimeUnit.SECONDS);
+		Log.info("-----------Script Timeout is set to "+PropertyManager.getInstance().getConfigTimeData("scriptTimeOut")+" Seconds.-------------");
+		BrowserFactory.getDriver().manage().deleteAllCookies();
+		Log.info("-----------Cookies Deleted.-------------");
 	}
 	
 	

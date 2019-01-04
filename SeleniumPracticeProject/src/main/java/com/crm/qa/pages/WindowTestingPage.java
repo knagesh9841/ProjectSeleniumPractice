@@ -21,7 +21,6 @@ import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
-
 import com.crm.qa.listeners.TestListener;
 import com.crm.qa.util.PropertyManager;
 import com.crm.qa.util.Utilities;
@@ -255,6 +254,7 @@ public class WindowTestingPage {
 				try {
 					
 					driver.get(PropertyManager.getInstance().getConfigTimeData("url"));
+					Utilities.maximizeWindow();
 					
 					Log.info("-----------Navigating to URL-------------");
 					
