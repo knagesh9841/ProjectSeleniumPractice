@@ -296,8 +296,49 @@ public class Utilities {
 		 return sFlag;
 	}
 
+	
+	/**
+	 * This method use to wait for element using Fluentwait and it will return element if element is Displayed.
+	 * @param driver TODO
+	 * @param elementToFind TODO
+	 * @return
+	 */
+	
+	public static WebElement VerifyForElementDisplayedusingFluentWait(WebDriver driver, By elementToFind)
+	{
+		WebElement element =null;
+		 try {
+			FluentWait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+			            .withMessage("Timeout occured!") 
+			            .ignoring(NoSuchElementException.class); 
+			 
+			 Function<WebDriver, WebElement> function = new Function<WebDriver, WebElement>()
+				{
+					public WebElement apply(WebDriver arg0) {
+						WebElement element = arg0.findElement(elementToFind);
+						
+						if(element!=null)
+						{
+							return element;
+						}
+						return element;
+					}
+				};
 
+				element = wait.until(function);
+				
+				Log.info("-----------Element is found.-------------");
+				
+		} catch (Exception e) {
+			
+			Log.error("----------Element is Not Found "+e.getMessage()+".---------");
+			
+		}
+		 
+		 return element;
+	}
 
+	
 	
 	/**
 	 * This method is used to click by JavaScriptExecutor.

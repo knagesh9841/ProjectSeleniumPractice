@@ -260,6 +260,7 @@ public class WindowTestingPage {
 					
 					Utilities.waitForPageTitleIs(driver, "SwitchTo to Windows in selenium python", 30);
 					
+					
 					String mainWindow = driver.getWindowHandle();
 					
 					if(isChrome())
