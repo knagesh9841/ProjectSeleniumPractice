@@ -254,9 +254,11 @@ public class WindowTestingPage {
 				try {
 					
 					driver.get(PropertyManager.getInstance().getConfigTimeData("url"));
-					Utilities.maximizeWindow();
-					
 					Log.info("-----------Navigating to URL-------------");
+					Utilities.maximizeWindow();
+					Utilities.waitForPageToBeLoad(driver);
+					
+					
 					
 					Utilities.waitForPageTitleIs(driver, "SwitchTo to Windows in selenium python", 30);
 					

@@ -12,6 +12,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -336,6 +337,40 @@ public class Utilities {
 		}
 		 
 		 return element;
+	}
+
+	
+	/**
+	 * This method use to wait for page to load.
+	 * @param driver TODO
+	 * @return
+	 */
+	
+	public static boolean waitForPageToBeLoad(WebDriver driver)
+	{
+		boolean sFlag = false;
+		 try {
+			 WebDriverWait wait = new WebDriverWait(driver, 30);
+			 
+			 ExpectedCondition<Boolean> pageLoadCondition = new
+		                ExpectedCondition<Boolean>() {
+		                    public Boolean apply(WebDriver driver) {
+		                        return ((JavascriptExecutor)driver).executeScript("return document.readyState").equals("complete");
+		                    }
+		                };
+		        
+		        
+				sFlag = wait.until(pageLoadCondition);
+				
+				Log.info("-----------Page is Loaded Successfully.-------------");
+				
+		} catch (Exception e) {
+			
+			Log.error("----------Page is Not Loaded Successfully..---------");
+			
+		}
+		 
+		 return sFlag;
 	}
 
 	
