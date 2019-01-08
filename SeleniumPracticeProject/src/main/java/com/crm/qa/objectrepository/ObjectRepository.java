@@ -18,5 +18,8 @@ public class ObjectRepository {
 	public static By byFrame2 = By.id("frame2");
 	public static By byFrame3 = By.id("frame3");
 	public static By byFrameElement = By.tagName("iframe");
+	public static By bytutorialMenu = By.xpath("//nav[@class='navigation']//span[text()='Tutorial']");
+	public static By bywebAutoToolMenu = By.xpath("//nav[@class='navigation']//span[text()='Web Automation Tools']");
+	public static By bycucumberTutMenu = By.xpath("//nav[@class='navigation']//span[text()='Cucumber Tutorial']");
 	
 }

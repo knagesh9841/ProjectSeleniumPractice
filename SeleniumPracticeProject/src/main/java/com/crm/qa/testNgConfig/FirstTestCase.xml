@@ -30,7 +30,7 @@
  </classes>
  </test> -->
  
- <test name="testngTest">
+<!--  <test name="testngTest">
  <parameter name="browser" value="firefox"/>
  <classes>
  	<class name="com.crm.qa.testcases.WindowTest">
@@ -40,7 +40,19 @@
 	</class>
 
  </classes>
- </test>
+ </test> -->
+ 
+ <test name="testngTest">
+ <parameter name="browser" value="firefox"/>
+ <classes>
+ 	<class name="com.crm.qa.testcases.MenuSelectionTest">
+		<methods>
+            <include name="menuSelectionTest"></include> 
+        </methods>
+	</class>
+
+ </classes>
+</test>
  
  
 </suite>

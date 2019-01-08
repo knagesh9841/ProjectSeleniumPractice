@@ -35,20 +35,26 @@ public class Utilities {
 	
 	public static boolean waitForElementVisible(WebDriver driver,By byElement,int timeOutInSeconds)
 	{
+		boolean sFlag =false;
 		try {
 
 			WebDriverWait wait = new WebDriverWait(driver, timeOutInSeconds);
 			WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(byElement));
 
-			Log.info("-----------Element is Visible in "+timeOutInSeconds+" seconds.-------------");
+			if(element!=null)
+			{
+				sFlag = true;
+				Log.info("-----------Element is Visible in "+timeOutInSeconds+" seconds.-------------");
+			}
 			
-			return element.isDisplayed();
+			
+			return sFlag;
 
 		} catch (Exception e) {
 
 			Log.error("----------Element is Not Visible in "+timeOutInSeconds+" seconds.---------");
 			
-			return false;
+			return sFlag;
 		}
 
 	}
@@ -92,19 +98,26 @@ public class Utilities {
 	
 	public static boolean waitForElementPresence(WebDriver driver,By byElement,int timeOutInSeconds)
 	{
+		boolean sFlag = false;
 		try {
 			WebDriverWait wait = new WebDriverWait(driver, timeOutInSeconds);
 			
 			WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(byElement));
 			
+			if(element!=null)
+			{
+				sFlag = true;
+			}
+			
 		    Log.info("-----------Element is found in DOM "+timeOutInSeconds+" seconds.-------------");
 		    
-			return element.isDisplayed();
+			return sFlag;
 			
 		} catch (Exception e) {
 			
 			Log.error("----------Element is not found in DOM "+timeOutInSeconds+" seconds.---------");
-			return false;
+			
+			return sFlag;
 		}
 	
 	}
@@ -121,19 +134,25 @@ public class Utilities {
 	
 	public static boolean waitForElementisClickable(WebDriver driver,By byElement,int timeOutInSeconds)
 	{
+		boolean sFlag = false;
 		try {
 			WebDriverWait wait = new WebDriverWait(driver, timeOutInSeconds);
 			WebElement element = wait.until(ExpectedConditions.elementToBeClickable(byElement));
 			
+			if(element!=null)
+			{
+				sFlag = true;
+			}
+			
 			Log.info("-----------Element is found in "+timeOutInSeconds+" seconds.Click operation can be performed.-------------");
 			
-			return element.isDisplayed();
+			return sFlag;
 			
 		} catch (Exception e) {
 			
 			Log.error("----------Element is not found in "+timeOutInSeconds+" seconds.Click operation cannot be performed---------");
 			
-			return false;
+			return sFlag;
 		}
 	
 	}
@@ -203,15 +222,20 @@ public class Utilities {
 	public static boolean waitForAllElementVisible(WebDriver driver, By element, int timeOutInSeconds)
 	{
 		List<WebElement> Pageelements =null;
-
+		boolean sFlag = false;
 		try {
 
 			WebDriverWait wait = new WebDriverWait(driver, timeOutInSeconds);
 			Pageelements = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(element));
 
+			if(Pageelements!=null)
+			{
+				sFlag = true;
+			}
+			
 			Log.info("-----------All Elements are Visible in "+timeOutInSeconds+" seconds.-------------");
 			
-			return Pageelements.get(0).isDisplayed();
+			return sFlag;
 
 
 
@@ -219,7 +243,7 @@ public class Utilities {
 
 			Log.error("----------All Elements are Not Visible in "+timeOutInSeconds+" seconds.---------");
 
-			return false;
+			return sFlag;
 		}
 
 	}
@@ -235,15 +259,21 @@ public class Utilities {
 	public static boolean waitForAllElementsPresence(WebDriver driver, By element, int timeOutInSeconds)
 	{
 		List<WebElement> Pageelements =null;
+		boolean sFlag = false;
 
 		try {
 
 			WebDriverWait wait = new WebDriverWait(driver, timeOutInSeconds);
 			Pageelements = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(element));
 
+			if(Pageelements!=null)
+			{
+				sFlag = true;
+			}
+			
 			Log.info("-----------All Elements are Visible in DOM "+timeOutInSeconds+" seconds.-------------");
 			
-			return Pageelements.get(0).isDisplayed();
+			return sFlag;
 
 
 
@@ -251,7 +281,7 @@ public class Utilities {
 
 			Log.error("----------All Elements are Not Visible in DOM "+timeOutInSeconds+" seconds.---------");
 
-			return false;
+			return sFlag;
 		}
 
 	}
