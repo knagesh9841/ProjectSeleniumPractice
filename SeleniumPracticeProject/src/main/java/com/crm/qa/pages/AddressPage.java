@@ -6,8 +6,10 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
@@ -37,6 +39,8 @@ public class AddressPage {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
+	
+	// url = http://a.testaddressbook.com/
 	
 	//*********Web Elements*********
 	
@@ -125,7 +129,7 @@ public class AddressPage {
 			
 			Log.info("-----------Clicked on Address button from login Home Page-------------");
 			
-			Utilities.waitForElementPresence(driver, byAddressPage_newAddressBtn, 30);
+			Utilities.waitForElementVisible(driver, byAddressPage_newAddressBtn, 30);
 			
 			WebElement newAddressBtn = driver.findElement(byAddressPage_newAddressBtn);
 			
@@ -134,7 +138,7 @@ public class AddressPage {
 			
 			Log.info("-----------Clicked on New Address button from login Home Page-------------");
 			
-			Utilities.waitForElementPresence(driver, byAddressPage_firstName, 30);
+			Utilities.waitForElementVisible(driver, byAddressPage_firstName, 30);
 			
 			WebElement fname = driver.findElement(byAddressPage_firstName);
 			
@@ -145,8 +149,14 @@ public class AddressPage {
 			lname.sendKeys(testDataHolder);
 			
 			testDataHolder = ExcelUtils.getData(testData, "Street");
-			street.sendKeys(testDataHolder);
+			Actions act =  new Actions(driver);
+			act.moveToElement(street).click().keyDown(street, Keys.SHIFT).sendKeys(street, testDataHolder).keyUp(street, Keys.SHIFT).perform();
 			
+			act.sendKeys(street,Keys.chord(Keys.CONTROL,"a"));
+			act.sendKeys(Keys.DELETE).perform();;
+			
+			street.sendKeys(testDataHolder);
+
 			testDataHolder = ExcelUtils.getData(testData, "Secondary Address");
 			secondAddrs.sendKeys(testDataHolder);
 			
@@ -196,7 +206,7 @@ public class AddressPage {
 			
 			Log.info("-----------Clicked on Submit Button-------------");
 			
-			Utilities.waitForElementPresence(driver, byAddressPage_successMsg, 30);
+			Utilities.waitForElementVisible(driver, byAddressPage_successMsg, 30);
 			
 			WebElement successMessage = driver.findElement(byAddressPage_successMsg);
 			
@@ -242,7 +252,7 @@ public class AddressPage {
 			
 			Log.info("-----------Clicked on List Button-------------");
 			
-			Utilities.waitForElementPresence(driver, byAddressPage_newAddressBtn, 30);
+			Utilities.waitForElementVisible(driver, byAddressPage_newAddressBtn, 30);
 			
 			List<WebElement> tableRowAfterAdding = driver.findElements(byAddressPage_addrsTableRow);
 			
@@ -392,7 +402,7 @@ public class AddressPage {
 		
 		try {
 			
-			Utilities.waitForElementPresence(driver, byAddressPage_successMsg, 30);
+			Utilities.waitForElementVisible(driver, byAddressPage_successMsg, 30);
 			
 			List<WebElement> tableRowAfterAdding = driver.findElements(byAddressPage_addrsTableRow);
 			
