@@ -4,6 +4,8 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -403,6 +405,62 @@ public class Utilities {
 		 return sFlag;
 	}
 
+	/**
+	 * This method will scroll Page using Robot class.
+	 * @param isUpScroll TODO
+	 */
+	
+	public static void scrollPageUsingRobotClass(boolean isUpScroll)
+	{
+		try {
+			Robot robot = new Robot();
+
+			if(isUpScroll)
+			{
+				robot.keyPress(KeyEvent.VK_PAGE_UP);
+				robot.keyRelease(KeyEvent.VK_PAGE_UP);
+			}else
+			{
+				robot.keyPress(KeyEvent.VK_PAGE_DOWN);
+				robot.keyRelease(KeyEvent.VK_PAGE_DOWN);
+			}
+			
+			Log.info("-----------Page is Scrolled Successfully.-------------");
+			
+		} catch (Exception e) {
+			Log.error("----------Page is Not Scrolled Successfully..---------");
+		}
+	}
+	
+	/**
+	 * This method will scroll Page using Robot class.
+	 * @param driver TODO
+	 * @param value TODO
+	 * @param noOfLines TODO
+	 */
+	
+	public static void scrollPageUsingJavaScript(WebDriver driver, int value, boolean noOfLines)
+	{
+		try {
+			
+
+			JavascriptExecutor js=(JavascriptExecutor) driver;
+			
+			if(noOfLines)
+			{
+				js.executeScript("window.scrollByLines("+value+")", "");
+			}else
+			{
+				js.executeScript("window.scrollBy(0,"+value+")", "");
+			}
+			
+			
+			Log.info("-----------Page is Scrolled Successfully.-------------");
+			
+		} catch (Exception e) {
+			Log.error("----------Page is Not Scrolled Successfully..---------");
+		}
+	}
 	
 	
 	/**
