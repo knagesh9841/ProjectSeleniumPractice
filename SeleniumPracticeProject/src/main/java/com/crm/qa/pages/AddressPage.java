@@ -90,6 +90,11 @@ public class AddressPage {
 	@CacheLookup
 	public WebElement website;
 	
+	@FindBy(how=How.ID,using="address_picture")
+	@CacheLookup
+	public WebElement uploadBtn;
+	
+	
 	@FindBy(how=How.ID,using="address_phone")
 	@CacheLookup
 	public WebElement phone;
@@ -186,6 +191,12 @@ public class AddressPage {
 
 			testDataHolder = ExcelUtils.getData(testData, "Website");
 			website.sendKeys(testDataHolder);
+			
+			
+			//Utilities.uploadFileWithRobot(System.getProperty("user.dir")+"\\Git.txt", uploadBtn, driver);
+			//Utilities.uploadFileWithAutoIt(System.getProperty("user.dir")+"\\Git.txt", uploadBtn, driver);
+			Utilities.uploadFileWithSikuli(System.getProperty("user.dir")+"\\Git.txt", uploadBtn, driver);
+			
 			
 			testDataHolder = ExcelUtils.getData(testData, "Phone");
 			phone.sendKeys(testDataHolder);

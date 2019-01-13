@@ -2,8 +2,10 @@ package com.crm.qa.util;
 
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
-
 import java.awt.Robot;
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
 import java.util.concurrent.TimeUnit;
 
@@ -11,12 +13,138 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.sikuli.script.Pattern;
+import org.sikuli.script.Screen;
 
 
 
 public class Utilities {
 	
 	static Logger Log = Logger.getLogger(Utilities.class.getName());
+	
+	/**
+	 * This method will upload file using Robot class.
+	 * @param filePath
+	 * @param uploadBtn
+	 * @param driver
+	 */
+	
+	public static void uploadFileWithRobot (String filePath, WebElement uploadBtn, WebDriver driver) {
+
+		try {
+
+
+
+			if(driver instanceof ChromeDriver)
+			{
+				uploadBtn.click();
+
+				StringSelection stringSelection = new StringSelection(filePath);
+				Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+				clipboard.setContents(stringSelection, null);
+
+				Robot robot = new Robot();
+
+				robot.delay(250);
+				robot.keyPress(KeyEvent.VK_ENTER);
+				robot.keyRelease(KeyEvent.VK_ENTER);
+				robot.keyPress(KeyEvent.VK_CONTROL);
+				robot.keyPress(KeyEvent.VK_V);
+				robot.keyRelease(KeyEvent.VK_V);
+				robot.keyRelease(KeyEvent.VK_CONTROL);
+				robot.keyPress(KeyEvent.VK_ENTER);
+				robot.delay(150);
+				robot.keyRelease(KeyEvent.VK_ENTER);
+			}else
+			{
+				uploadBtn.sendKeys(filePath);
+			}
+
+			Log.info("-----------File is Uploaded Successfully.-------------");
+
+		} catch (Exception e) {
+
+			Log.error("----------File is Not Uploaded Successfully.---------");
+
+		}
+	}
+	
+	/**
+	 * This Method will Upload file using Autoit.
+	 * @param filePath
+	 * @param uploadBtn
+	 * @param driver
+	 */
+	
+	public static void uploadFileWithAutoIt (String filePath, WebElement uploadBtn, WebDriver driver) {
+
+		try {
+
+
+
+			if(driver instanceof ChromeDriver)
+			{
+				uploadBtn.click();
+
+				Runtime.getRuntime().exec(System.getProperty("user.dir")+"\\uploadFile.exe"+" "+filePath);
+				
+				Log.info("-----------File is Uploaded Successfully.-------------");
+				
+			}else
+			{
+				uploadBtn.sendKeys(filePath);
+			}
+
+			Log.info("-----------File is Uploaded Successfully.-------------");
+
+		} catch (Exception e) {
+
+			Log.error("----------File is Not Uploaded Successfully.---------");
+
+		}
+	}
+	
+	/**
+	 * This Method will Upload file using Sikuli.
+	 * @param filePath
+	 * @param uploadBtn
+	 * @param driver
+	 */
+	
+	public static void uploadFileWithSikuli (String filePath, WebElement uploadBtn, WebDriver driver) {
+
+		try {
+
+
+
+			if(driver instanceof ChromeDriver)
+			{
+				Screen screen = new Screen();
+		        Pattern fileInputTextBox = new Pattern(System.getProperty("user.dir") + "\\UploadImages\\TextBox.PNG");
+		        Pattern openButton = new Pattern(System.getProperty("user.dir") + "\\UploadImages\\OpenButton.PNG");
+		        
+				uploadBtn.click();
+
+				screen.wait(fileInputTextBox, 20);
+				screen.type(fileInputTextBox, filePath);
+				screen.click(openButton);
+				
+				Log.info("-----------File is Uploaded Successfully.-------------");
+				
+			}else
+			{
+				uploadBtn.sendKeys(filePath);
+			}
+
+			Log.info("-----------File is Uploaded Successfully.-------------");
+
+		} catch (Exception e) {
+
+			Log.error("----------File is Not Uploaded Successfully.---------");
+
+		}
+	}
 	
 	/**
 	 * This method will scroll Page using Robot class.
