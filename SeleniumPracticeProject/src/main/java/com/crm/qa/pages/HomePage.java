@@ -7,7 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import static com.crm.qa.objectrepository.ObjectRepository.*;
 import com.crm.qa.listeners.TestListener;
-import com.crm.qa.util.Utilities;
+import com.crm.qa.util.WaitUtilities;
 
 public class HomePage {
 	
@@ -42,11 +42,11 @@ public class HomePage {
 		public String loginOutFromApplication() 
 		{
 			try {
-				Utilities.waitForElementVisible(driver, byHomePage_signoutBtn, 30);
+				WaitUtilities.waitForElementVisible(driver, byHomePage_signoutBtn, 30);
 				WebElement signOut = driver.findElement(byHomePage_signoutBtn);
 				signOut.click();
 				Log.info("-----------Clicked on Signout button-------------");
-				Utilities.waitForPageTitleIs(driver, "Address Book - Sign In", 30);
+				WaitUtilities.waitForPageTitleIs(driver, "Address Book - Sign In", 30);
 				
 			} catch (Exception e) {
 				

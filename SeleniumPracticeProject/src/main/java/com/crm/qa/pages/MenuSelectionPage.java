@@ -17,6 +17,7 @@ import static com.crm.qa.objectrepository.ObjectRepository.*;
 import com.crm.qa.listeners.TestListener;
 import com.crm.qa.util.PropertyManager;
 import com.crm.qa.util.Utilities;
+import com.crm.qa.util.WaitUtilities;
 
 public class MenuSelectionPage {
 	
@@ -65,23 +66,23 @@ public class MenuSelectionPage {
 			driver.get(PropertyManager.getInstance().getConfigTimeData("url"));
 			Log.info("-----------Navigating to URL-------------");
 			Utilities.maximizeWindow();
-			Utilities.waitForPageToBeLoad(driver);
+			WaitUtilities.waitForPageToBeLoad(driver);
 			
-			Utilities.waitForPageTitleIs(driver, "QA Automation Tools Tutorial", 30);
+			WaitUtilities.waitForPageTitleIs(driver, "QA Automation Tools Tutorial", 30);
 			
 			Actions action = new Actions(driver);
 			
 			action.moveToElement(tutorialMenu).click().perform();
 			
-			Utilities.waitForElementVisible(driver, bywebAutoToolMenu, 20);
+			WaitUtilities.waitForElementVisible(driver, bywebAutoToolMenu, 20);
 			
 			action.moveToElement(webAutoToolMenu).perform();
 			
-			Utilities.waitForElementVisible(driver, bycucumberTutMenu, 20);
+			WaitUtilities.waitForElementVisible(driver, bycucumberTutMenu, 20);
 			
 			action.moveToElement(cucumberTutMenu).click().perform();
 			
-			Utilities.waitForPageTitleIs(driver, "Learn Cucumber | Cucumber Tutorial for Beginners", 30);
+			WaitUtilities.waitForPageTitleIs(driver, "Learn Cucumber | Cucumber Tutorial for Beginners", 30);
 			
 			String aTitleName = driver.getTitle();
 			

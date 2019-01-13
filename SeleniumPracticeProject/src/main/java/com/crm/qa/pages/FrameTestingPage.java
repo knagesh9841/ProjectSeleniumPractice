@@ -10,7 +10,7 @@ import org.testng.Assert;
 
 import com.crm.qa.listeners.TestListener;
 import com.crm.qa.util.PropertyManager;
-import com.crm.qa.util.Utilities;
+import com.crm.qa.util.WaitUtilities;
 
 import static com.crm.qa.objectrepository.ObjectRepository.*;
 
@@ -52,7 +52,7 @@ public class FrameTestingPage {
 				
 				Log.info("-----------Navigating to URL-------------");
 				
-				Utilities.waitForPageTitleIs(driver, "Frames Example in Selenium webdriver", 30);
+				WaitUtilities.waitForPageTitleIs(driver, "Frames Example in Selenium webdriver", 30);
 				
 				TopFrameDriver = driver.switchTo().frame(driver.findElement(byFrame1));
 				

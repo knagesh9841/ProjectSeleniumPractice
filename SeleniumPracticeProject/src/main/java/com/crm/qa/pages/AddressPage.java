@@ -21,6 +21,7 @@ import static com.crm.qa.objectrepository.ObjectRepository.*;
 import com.crm.qa.exceltestdata.ExcelUtils;
 import com.crm.qa.listeners.TestListener;
 import com.crm.qa.util.Utilities;
+import com.crm.qa.util.WaitUtilities;
 
 public class AddressPage {
 	
@@ -129,7 +130,7 @@ public class AddressPage {
 			
 			Log.info("-----------Clicked on Address button from login Home Page-------------");
 			
-			Utilities.waitForElementVisible(driver, byAddressPage_newAddressBtn, 30);
+			WaitUtilities.waitForElementVisible(driver, byAddressPage_newAddressBtn, 30);
 			
 			WebElement newAddressBtn = driver.findElement(byAddressPage_newAddressBtn);
 			
@@ -138,7 +139,7 @@ public class AddressPage {
 			
 			Log.info("-----------Clicked on New Address button from login Home Page-------------");
 			
-			Utilities.waitForElementVisible(driver, byAddressPage_firstName, 30);
+			WaitUtilities.waitForElementVisible(driver, byAddressPage_firstName, 30);
 			
 			WebElement fname = driver.findElement(byAddressPage_firstName);
 			
@@ -206,7 +207,7 @@ public class AddressPage {
 			
 			Log.info("-----------Clicked on Submit Button-------------");
 			
-			Utilities.waitForElementVisible(driver, byAddressPage_successMsg, 30);
+			WaitUtilities.waitForElementVisible(driver, byAddressPage_successMsg, 30);
 			
 			WebElement successMessage = driver.findElement(byAddressPage_successMsg);
 			
@@ -252,7 +253,7 @@ public class AddressPage {
 			
 			Log.info("-----------Clicked on List Button-------------");
 			
-			Utilities.waitForElementVisible(driver, byAddressPage_newAddressBtn, 30);
+			WaitUtilities.waitForElementVisible(driver, byAddressPage_newAddressBtn, 30);
 			
 			List<WebElement> tableRowAfterAdding = driver.findElements(byAddressPage_addrsTableRow);
 			
@@ -358,7 +359,7 @@ public class AddressPage {
 					
 					tableRowAfterAdding.get(cnt).findElements(By.tagName("td")).get(6).findElement(By.tagName("a")).click();
 					
-					Utilities.waitForAlertIsPresent(driver, 30);
+					WaitUtilities.waitForAlertIsPresent(driver, 30);
 					
 					Alert alert = driver.switchTo().alert();
 					
@@ -402,7 +403,7 @@ public class AddressPage {
 		
 		try {
 			
-			Utilities.waitForElementVisible(driver, byAddressPage_successMsg, 30);
+			WaitUtilities.waitForElementVisible(driver, byAddressPage_successMsg, 30);
 			
 			List<WebElement> tableRowAfterAdding = driver.findElements(byAddressPage_addrsTableRow);
 			

@@ -24,6 +24,7 @@ import org.openqa.selenium.support.PageFactory;
 import com.crm.qa.listeners.TestListener;
 import com.crm.qa.util.PropertyManager;
 import com.crm.qa.util.Utilities;
+import com.crm.qa.util.WaitUtilities;
 
 public class WindowTestingPage {
 	
@@ -256,11 +257,11 @@ public class WindowTestingPage {
 					driver.get(PropertyManager.getInstance().getConfigTimeData("url"));
 					Log.info("-----------Navigating to URL-------------");
 					Utilities.maximizeWindow();
-					Utilities.waitForPageToBeLoad(driver);
+					WaitUtilities.waitForPageToBeLoad(driver);
 					
 					
 					
-					Utilities.waitForPageTitleIs(driver, "SwitchTo to Windows in selenium python", 30);
+					WaitUtilities.waitForPageTitleIs(driver, "SwitchTo to Windows in selenium python", 30);
 					
 					
 					String mainWindow = driver.getWindowHandle();
@@ -270,13 +271,13 @@ public class WindowTestingPage {
 						if(switchTab)
 						{
 							newWindowBtn.click();
-							Utilities.waitForPageTitleIs(driver, "Google", 30);
+							WaitUtilities.waitForPageTitleIs(driver, "Google", 30);
 							switchToTabUsingTitle("Google");
 							
 						}else
 						{
 							newWindowBtn.click();
-							Utilities.waitForPageTitleIs(driver, "Google", 30);
+							WaitUtilities.waitForPageTitleIs(driver, "Google", 30);
 							switchToWindowUsingTitle("Google");
 						}
 						
@@ -285,13 +286,13 @@ public class WindowTestingPage {
 						if(switchTab)
 						{
 							newWindowBtn.click();
-							Utilities.waitForPageTitleIs(driver, "Google", 30);
+							WaitUtilities.waitForPageTitleIs(driver, "Google", 30);
 							switchToTabUsingTitle("Google");
 							
 						}else
 						{
 							newWindowBtn.click();
-							Utilities.waitForPageTitleIs(driver, "Google", 30);
+							WaitUtilities.waitForPageTitleIs(driver, "Google", 30);
 							switchToWindowUsingTitle("Google");
 						}
 						
@@ -300,13 +301,13 @@ public class WindowTestingPage {
 						if(switchTab)
 						{
 							newWindowBtn.click();
-							Utilities.waitForPageTitleIs(driver, "Google", 30);
+							WaitUtilities.waitForPageTitleIs(driver, "Google", 30);
 							switchToTabUsingTitle("Google");
 							
 						}else
 						{
 							newWindowBtn.click();
-							Utilities.waitForPageTitleIs(driver, "Google", 30);
+							WaitUtilities.waitForPageTitleIs(driver, "Google", 30);
 							switchToWindowUsingTitle("Google");
 						}
 					}else if(isEdge())
@@ -314,14 +315,14 @@ public class WindowTestingPage {
 						if(switchTab)
 						{
 							newWindowBtn.click();
-							Utilities.waitForPageTitleIs(driver, "Google", 30);
+							WaitUtilities.waitForPageTitleIs(driver, "Google", 30);
 							switchToTabUsingTitle("Google");
 							
 						}else
 						{
 							Actions act = new Actions(driver);
 							act.keyDown(Keys.SHIFT).click(newWindowBtn).build().perform();
-							Utilities.waitForPageTitleIs(driver, "Google", 30);
+							WaitUtilities.waitForPageTitleIs(driver, "Google", 30);
 							switchToWindowUsingTitle("Google");
 						}
 

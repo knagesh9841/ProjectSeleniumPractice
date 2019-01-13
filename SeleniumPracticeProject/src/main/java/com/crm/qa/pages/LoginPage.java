@@ -10,7 +10,7 @@ import org.testng.Assert;
 import static com.crm.qa.objectrepository.ObjectRepository.*;
 import com.crm.qa.listeners.TestListener;
 import com.crm.qa.util.PropertyManager;
-import com.crm.qa.util.Utilities;
+import com.crm.qa.util.WaitUtilities;
 
 public class LoginPage {
 	
@@ -64,16 +64,16 @@ public class LoginPage {
 			driver.get(PropertyManager.getInstance().getConfigTimeData("url"));
 
 			Log.info("-----------Navigating to URL-------------");
-			Utilities.waitForPageTitleIs(driver, "Address Book", 30);
+			WaitUtilities.waitForPageTitleIs(driver, "Address Book", 30);
 			signIn.click();
-			Utilities.waitForElementVisible(driver, byLoginPage_userName, 30);
+			WaitUtilities.waitForElementVisible(driver, byLoginPage_userName, 30);
 			uname.clear();
 			uname.sendKeys(userName);
 			pwd.clear();
 			pwd.sendKeys(password);
 			submit.click();
 			Log.info("-----------Clicked on Sign In button-------------");
-			Utilities.waitForPageTitleIs(driver, "Address Book", 30);
+			WaitUtilities.waitForPageTitleIs(driver, "Address Book", 30);
 		} catch (Exception e) {
 			
 			Log.error("----------Exception Occured while loginto Application---------", e);
