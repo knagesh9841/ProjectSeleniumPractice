@@ -1,5 +1,7 @@
 package com.crm.qa.util;
 
+import java.util.HashMap;
+
 import org.openqa.selenium.UnexpectedAlertBehaviour;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeOptions;
@@ -15,11 +17,22 @@ public class OptionsManager {
 	 //Get Chrome Options
 	
     public static ChromeOptions getChromeOptions() {
+    	
+    	HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
+	    chromePrefs.put("profile.default_content_settings.popups", 0);
+	       
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--start-maximized");
         options.addArguments("--ignore-certificate-errors");
         options.addArguments("--disable-popup-blocking");
+        options.setExperimentalOption("prefs", chromePrefs);
+	    options.addArguments("--test-type");
+	    options.addArguments("--disable-extensions"); //to disable browser extension popup
+	    options.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
+        
         //options.addArguments("--incognito");
+        
+        
         return options;
     }
 
@@ -33,6 +46,20 @@ public class OptionsManager {
         
         profile.setAcceptUntrustedCertificates(true);
         profile.setAssumeUntrustedCertificateIssuer(false);
+        profile.setPreference("browser.download.folderList", 2);
+        profile.setPreference("browser.download.manager.showWhenStarting", false);
+        profile.setPreference("browser.helperApps.neverAsk.openFile",
+				"text/csv,application/x-msexcel,application/excel,application/x-excel,application/vnd.ms-excel,image/png,image/jpeg,text/html,text/plain,application/msword,application/xml,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+        
+        profile.setPreference("browser.helperApps.neverAsk.saveToDisk",
+        		"text/csv,application/x-msexcel,application/excel,application/x-excel,application/vnd.ms-excel,image/png,image/jpeg,text/html,text/plain,application/msword,application/xml,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+        profile.setPreference("browser.helperApps.alwaysAsk.force", false);
+		profile.setPreference("browser.download.manager.alertOnEXEOpen", false);
+		profile.setPreference("browser.download.manager.focusWhenStarting", false);
+		profile.setPreference("browser.download.manager.useWindow", false);
+		profile.setPreference("browser.download.manager.showAlertOnComplete", false);
+		profile.setPreference("browser.download.manager.closeWhenDone", false);
+		profile.setPreference( "pdfjs.disabled", true );
         
         //Use No Proxy Settings
         

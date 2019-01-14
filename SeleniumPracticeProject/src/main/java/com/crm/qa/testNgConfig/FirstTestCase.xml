@@ -6,7 +6,7 @@
         <listener class-name="com.crm.qa.listeners.TestListener"/>
     </listeners>
     
- <test name="testngTest">
+ <!-- <test name="testngTest">
  <parameter name="browser" value="chrome"/>
  <classes>
  	<class name="com.crm.qa.testcases.LoginTest">
@@ -16,10 +16,10 @@
 	</class>
 
  </classes>
- </test>
+ </test> -->
  
  <!-- <test name="testngTest">
- <parameter name="browser" value="edge"/>
+ <parameter name="browser" value="chrome"/>
  <classes>
  	<class name="com.crm.qa.testcases.FrameTest">
 		<methods>
@@ -30,8 +30,8 @@
  </classes>
  </test> -->
  
-<!--  <test name="testngTest">
- <parameter name="browser" value="firefox"/>
+ <!-- <test name="testngTest">
+ <parameter name="browser" value="chrome"/>
  <classes>
  	<class name="com.crm.qa.testcases.WindowTest">
 		<methods>
@@ -42,8 +42,8 @@
  </classes>
  </test> -->
  
-<!--  <test name="testngTest">
- <parameter name="browser" value="firefox"/>
+ <!-- <test name="testngTest">
+ <parameter name="browser" value="chrome"/>
  <classes>
  	<class name="com.crm.qa.testcases.MenuSelectionTest">
 		<methods>
@@ -53,6 +53,18 @@
 
  </classes>
 </test> -->
+
+<test name="testngTest">
+ <parameter name="browser" value="chrome"/>
+ <classes>
+ 	<class name="com.crm.qa.testcases.DownloadTest">
+		<methods>
+            <include name="downloadTest"></include> 
+        </methods>
+	</class>
+
+ </classes>
+ </test>
  
  
 </suite>

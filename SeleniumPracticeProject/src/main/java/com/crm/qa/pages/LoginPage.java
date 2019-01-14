@@ -10,6 +10,7 @@ import org.testng.Assert;
 import static com.crm.qa.objectrepository.ObjectRepository.*;
 import com.crm.qa.listeners.TestListener;
 import com.crm.qa.util.PropertyManager;
+import com.crm.qa.util.Utilities;
 import com.crm.qa.util.WaitUtilities;
 
 public class LoginPage {
@@ -61,9 +62,13 @@ public class LoginPage {
 			
 			
 
-			driver.get(PropertyManager.getInstance().getConfigTimeData("url"));
+			driver.get(PropertyManager.getInstance().getConfigTimeData("basicurl"));
 
 			Log.info("-----------Navigating to URL-------------");
+			
+			Utilities.maximizeWindow();
+			WaitUtilities.waitForPageToBeLoad(driver);
+			
 			WaitUtilities.waitForPageTitleIs(driver, "Address Book", 30);
 			signIn.click();
 			WaitUtilities.waitForElementVisible(driver, byLoginPage_userName, 30);

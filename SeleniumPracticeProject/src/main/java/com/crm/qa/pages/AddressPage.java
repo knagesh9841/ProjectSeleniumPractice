@@ -195,7 +195,7 @@ public class AddressPage {
 			
 			//Utilities.uploadFileWithRobot(System.getProperty("user.dir")+"\\Git.txt", uploadBtn, driver);
 			//Utilities.uploadFileWithAutoIt(System.getProperty("user.dir")+"\\Git.txt", uploadBtn, driver);
-			Utilities.uploadFileWithSikuli(System.getProperty("user.dir")+"\\Git.txt", uploadBtn, driver);
+			Utilities.uploadFileWithSikuli(System.getProperty("user.dir")+"\\Git.txt", uploadBtn, driver, System.getProperty("user.dir") + "\\UploadImages\\TextBox.PNG", System.getProperty("user.dir") + "\\UploadImages\\OpenButton.PNG");
 			
 			
 			testDataHolder = ExcelUtils.getData(testData, "Phone");

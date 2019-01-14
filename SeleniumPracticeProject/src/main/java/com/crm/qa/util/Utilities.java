@@ -110,9 +110,11 @@ public class Utilities {
 	 * @param filePath
 	 * @param uploadBtn
 	 * @param driver
+	 * @param inputBox TODO
+	 * @param openBtn TODO
 	 */
 	
-	public static void uploadFileWithSikuli (String filePath, WebElement uploadBtn, WebDriver driver) {
+	public static void uploadFileWithSikuli (String filePath, WebElement uploadBtn, WebDriver driver, String inputBox, String openBtn) {
 
 		try {
 
@@ -121,8 +123,8 @@ public class Utilities {
 			if(driver instanceof ChromeDriver)
 			{
 				Screen screen = new Screen();
-		        Pattern fileInputTextBox = new Pattern(System.getProperty("user.dir") + "\\UploadImages\\TextBox.PNG");
-		        Pattern openButton = new Pattern(System.getProperty("user.dir") + "\\UploadImages\\OpenButton.PNG");
+		        Pattern fileInputTextBox = new Pattern(inputBox);
+		        Pattern openButton = new Pattern(openBtn);
 		        
 				uploadBtn.click();
 
@@ -135,9 +137,10 @@ public class Utilities {
 			}else
 			{
 				uploadBtn.sendKeys(filePath);
+				Log.info("-----------File is Uploaded Successfully.-------------");
 			}
 
-			Log.info("-----------File is Uploaded Successfully.-------------");
+			
 
 		} catch (Exception e) {
 

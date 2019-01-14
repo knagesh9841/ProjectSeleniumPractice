@@ -254,7 +254,7 @@ public class WindowTestingPage {
 			{
 				try {
 					
-					driver.get(PropertyManager.getInstance().getConfigTimeData("url"));
+					driver.get(PropertyManager.getInstance().getConfigTimeData("windowurl"));
 					Log.info("-----------Navigating to URL-------------");
 					Utilities.maximizeWindow();
 					WaitUtilities.waitForPageToBeLoad(driver);
