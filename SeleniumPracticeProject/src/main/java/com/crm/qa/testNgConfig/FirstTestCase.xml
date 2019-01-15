@@ -7,7 +7,7 @@
     </listeners>
     
  <!-- <test name="testngTest">
- <parameter name="browser" value="chrome"/>
+ <parameter name="browser" value="ie"/>
  <classes>
  	<class name="com.crm.qa.testcases.LoginTest">
 		<methods>
@@ -55,7 +55,7 @@
 </test> -->
 
 <test name="testngTest">
- <parameter name="browser" value="chrome"/>
+ <parameter name="browser" value="ie"/>
  <classes>
  	<class name="com.crm.qa.testcases.DownloadTest">
 		<methods>

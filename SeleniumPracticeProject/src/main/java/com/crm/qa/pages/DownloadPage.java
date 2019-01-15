@@ -51,12 +51,24 @@ public class DownloadPage {
 			
 			Log.info("-----------Navigating to URL-------------");
 			
-			Utilities.maximizeWindow();
+			//Utilities.maximizeWindow();
 			WaitUtilities.waitForPageToBeLoad(driver);
 			
 			WaitUtilities.waitForPageTitleIs(driver, "Demo Form for practicing Selenium Automation", 30);
 			
-			downloadBtn.click();
+			// Firefox and Chrome Browser
+			//downloadBtn.click();
+			
+			// Edge Browser
+			//Utilities.downloadFileWithSikuli(downloadBtn, driver, System.getProperty("user.dir") + "\\downloadImages\\SaveBtn.PNG", System.getProperty("user.dir") + "\\downloadImages\\CloseBtn.PNG");
+			
+			
+			// IE Browser
+			
+			Utilities.scrollIntoViewByJavaScriptExecutor(driver, downloadBtn);
+			Utilities.downloadFileWithSikuli(downloadBtn, driver, System.getProperty("user.dir") + "\\downloadImages\\SaveBtnIE.PNG", System.getProperty("user.dir") + "\\downloadImages\\CloseBtnIE.PNG");
+			
+			
 		}
 
 }

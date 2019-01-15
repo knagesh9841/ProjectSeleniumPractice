@@ -149,6 +149,44 @@ public class Utilities {
 		}
 	}
 	
+	
+	/**
+	 * This Method will Download file using Sikuli.
+	 * @param downloadBtn
+	 * @param driver
+	 * @param saveBtn TODO
+	 * @param closeBtn TODO
+	 */
+	
+	public static void downloadFileWithSikuli (WebElement downloadBtn, WebDriver driver, String saveBtn, String closeBtn) {
+
+		try {
+
+
+				Screen screen = new Screen();
+		        Pattern saveButton = new Pattern(saveBtn);
+		        Pattern closeButton = new Pattern(closeBtn);
+		        
+				//downloadBtn.click();
+		        Utilities.clickByJavaScriptExecutor(driver, downloadBtn);
+		        
+				screen.wait(saveButton, 20);
+				screen.click(saveButton);
+				screen.wait(closeButton, 20);
+				screen.click(closeButton);
+				
+				Log.info("-----------File is Downloaded Successfully.-------------");
+				
+			
+			
+
+		} catch (Exception e) {
+
+			Log.error("----------File is Not Downloaded Successfully.---------");
+
+		}
+	}
+	
 	/**
 	 * This method will scroll Page using Robot class.
 	 * @param isUpScroll TODO
