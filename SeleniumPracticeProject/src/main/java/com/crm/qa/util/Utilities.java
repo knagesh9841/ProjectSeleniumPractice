@@ -169,6 +169,7 @@ public class Utilities {
 		        
 				//downloadBtn.click();
 		        Utilities.clickByJavaScriptExecutor(driver, downloadBtn);
+		        WaitUtilities.waitForSleep(5000L);
 		        
 				screen.wait(saveButton, 20);
 				screen.click(saveButton);

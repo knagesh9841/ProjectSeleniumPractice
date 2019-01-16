@@ -55,7 +55,7 @@
 </test> -->
 
 <test name="testngTest">
- <parameter name="browser" value="ie"/>
+ <parameter name="browser" value="firefox"/>
  <classes>
  	<class name="com.crm.qa.testcases.DownloadTest">
 		<methods>

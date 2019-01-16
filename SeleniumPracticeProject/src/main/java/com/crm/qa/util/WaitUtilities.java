@@ -68,13 +68,13 @@ public class WaitUtilities {
 			
 			boolean elementIsPresent = wait.until(ExpectedConditions.invisibilityOfElementLocated(byElement));
 			
-			Utilities.Log.info("-----------Element is Invisible in "+timeOutInSeconds+" seconds.-------------");
+			Log.info("-----------Element is Invisible in "+timeOutInSeconds+" seconds.-------------");
 			 
 			return elementIsPresent;
 			
 		} catch (Exception e) {
 			
-			Utilities.Log.error("----------Element is not invisible in "+timeOutInSeconds+" seconds.---------");
+			Log.error("----------Element is not invisible in "+timeOutInSeconds+" seconds.---------");
 			
 			return false;
 		}
@@ -102,13 +102,13 @@ public class WaitUtilities {
 				sFlag = true;
 			}
 			
-		    Utilities.Log.info("-----------Element is found in DOM "+timeOutInSeconds+" seconds.-------------");
+		    Log.info("-----------Element is found in DOM "+timeOutInSeconds+" seconds.-------------");
 		    
 			return sFlag;
 			
 		} catch (Exception e) {
 			
-			Utilities.Log.error("----------Element is not found in DOM "+timeOutInSeconds+" seconds.---------");
+			Log.error("----------Element is not found in DOM "+timeOutInSeconds+" seconds.---------");
 			
 			return sFlag;
 		}
@@ -136,13 +136,13 @@ public class WaitUtilities {
 				sFlag = true;
 			}
 			
-			Utilities.Log.info("-----------Element is found in "+timeOutInSeconds+" seconds.Click operation can be performed.-------------");
+			Log.info("-----------Element is found in "+timeOutInSeconds+" seconds.Click operation can be performed.-------------");
 			
 			return sFlag;
 			
 		} catch (Exception e) {
 			
-			Utilities.Log.error("----------Element is not found in "+timeOutInSeconds+" seconds.Click operation cannot be performed---------");
+			Log.error("----------Element is not found in "+timeOutInSeconds+" seconds.Click operation cannot be performed---------");
 			
 			return sFlag;
 		}
@@ -163,12 +163,12 @@ public class WaitUtilities {
 		try {
 			WebDriverWait wait = new WebDriverWait(driver, timeOutInSeconds);
 			boolean titlePresent = wait.until(ExpectedConditions.titleIs(pageTitle));
-			Utilities.Log.info("-----------Page with Title "+pageTitle+" is found in "+timeOutInSeconds+" seconds.-------------");
+			Log.info("-----------Page with Title "+pageTitle+" is found in "+timeOutInSeconds+" seconds.-------------");
 			return titlePresent;
 	
 		} catch (Exception e) {
 	
-			Utilities.Log.error("-----------Page with Title "+pageTitle+" is not found in "+timeOutInSeconds+" seconds.-------------");
+			Log.error("-----------Page with Title "+pageTitle+" is not found in "+timeOutInSeconds+" seconds.-------------");
 	
 			return false;
 		}
@@ -189,12 +189,12 @@ public class WaitUtilities {
 			WebDriverWait wait = new WebDriverWait(driver, timeOutInSeconds);
 			wait.until(ExpectedConditions.alertIsPresent());
 			
-			Utilities.Log.info("-----------Alert is found in "+timeOutInSeconds+" seconds.-------------");
+			Log.info("-----------Alert is found in "+timeOutInSeconds+" seconds.-------------");
 			return true;
 			
 		} catch (Exception e) {
 			
-			Utilities.Log.error("----------Alert  is not found in "+timeOutInSeconds+" seconds.---------");
+			Log.error("----------Alert  is not found in "+timeOutInSeconds+" seconds.---------");
 			
 			return false;
 		}
@@ -222,7 +222,7 @@ public class WaitUtilities {
 				sFlag = true;
 			}
 			
-			Utilities.Log.info("-----------All Elements are Visible in "+timeOutInSeconds+" seconds.-------------");
+			Log.info("-----------All Elements are Visible in "+timeOutInSeconds+" seconds.-------------");
 			
 			return sFlag;
 	
@@ -230,7 +230,7 @@ public class WaitUtilities {
 	
 		} catch (Exception e) {
 	
-			Utilities.Log.error("----------All Elements are Not Visible in "+timeOutInSeconds+" seconds.---------");
+			Log.error("----------All Elements are Not Visible in "+timeOutInSeconds+" seconds.---------");
 	
 			return sFlag;
 		}
@@ -259,7 +259,7 @@ public class WaitUtilities {
 				sFlag = true;
 			}
 			
-			Utilities.Log.info("-----------All Elements are Visible in DOM "+timeOutInSeconds+" seconds.-------------");
+			Log.info("-----------All Elements are Visible in DOM "+timeOutInSeconds+" seconds.-------------");
 			
 			return sFlag;
 	
@@ -267,7 +267,7 @@ public class WaitUtilities {
 	
 		} catch (Exception e) {
 	
-			Utilities.Log.error("----------All Elements are Not Visible in DOM "+timeOutInSeconds+" seconds.---------");
+			Log.error("----------All Elements are Not Visible in DOM "+timeOutInSeconds+" seconds.---------");
 	
 			return sFlag;
 		}
@@ -304,11 +304,11 @@ public class WaitUtilities {
 	
 				sFlag = wait.until(function);
 				
-				Utilities.Log.info("-----------Element is found.-------------");
+				Log.info("-----------Element is found.-------------");
 				
 		} catch (Exception e) {
 			
-			Utilities.Log.error("----------Element is Not Found "+e.getMessage()+".---------");
+			Log.error("----------Element is Not Found "+e.getMessage()+".---------");
 			
 		}
 		 
@@ -345,11 +345,11 @@ public class WaitUtilities {
 	
 				element = wait.until(function);
 				
-				Utilities.Log.info("-----------Element is found.-------------");
+				Log.info("-----------Element is found.-------------");
 				
 		} catch (Exception e) {
 			
-			Utilities.Log.error("----------Element is Not Found "+e.getMessage()+".---------");
+			Log.error("----------Element is Not Found "+e.getMessage()+".---------");
 			
 		}
 		 
@@ -378,15 +378,27 @@ public class WaitUtilities {
 		        
 				sFlag = wait.until(pageLoadCondition);
 				
-				Utilities.Log.info("-----------Page is Loaded Successfully.-------------");
+				Log.info("-----------Page is Loaded Successfully.-------------");
 				
 		} catch (Exception e) {
 			
-			Utilities.Log.error("----------Page is Not Loaded Successfully..---------");
+			Log.error("----------Page is Not Loaded Successfully.---------");
 			
 		}
 		 
 		 return sFlag;
+	}
+	
+	public static boolean waitForSleep(Long timeInMS)
+	{
+		try {
+			Thread.sleep(timeInMS);
+			Log.info("-----------Wait Successfully.-------------");
+			return true;
+		} catch (InterruptedException e) {
+			Log.error("----------Wait Failed.---------");
+			return false;
+		}
 	}
 
 }

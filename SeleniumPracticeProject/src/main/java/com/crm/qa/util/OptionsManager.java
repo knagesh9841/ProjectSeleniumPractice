@@ -1,5 +1,6 @@
 package com.crm.qa.util;
 
+import java.io.File;
 import java.util.HashMap;
 
 import org.openqa.selenium.UnexpectedAlertBehaviour;
@@ -20,6 +21,8 @@ public class OptionsManager {
     	
     	HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
 	    chromePrefs.put("profile.default_content_settings.popups", 0);
+	    chromePrefs.put("download.default_directory",
+				System.getProperty("user.dir") + File.separator + "externalFiles" + File.separator + "downloadFiles");
 	       
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--start-maximized");
@@ -53,6 +56,7 @@ public class OptionsManager {
         
         profile.setPreference("browser.helperApps.neverAsk.saveToDisk",
         		"text/csv,application/x-msexcel,application/excel,application/x-excel,application/vnd.ms-excel,image/png,image/jpeg,text/html,text/plain,application/msword,application/xml,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+        profile.setPreference("browser.download.dir", System.getProperty("user.dir") + File.separator + "externalFiles" + File.separator + "downloadFiles");
         profile.setPreference("browser.helperApps.alwaysAsk.force", false);
 		profile.setPreference("browser.download.manager.alertOnEXEOpen", false);
 		profile.setPreference("browser.download.manager.focusWhenStarting", false);
