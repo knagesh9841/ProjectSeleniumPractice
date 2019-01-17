@@ -173,6 +173,7 @@ public class Utilities {
 		        
 				screen.wait(saveButton, 20);
 				screen.click(saveButton);
+				WaitUtilities.waitForSleep(10000L);
 				screen.wait(closeButton, 20);
 				screen.click(closeButton);
 				
