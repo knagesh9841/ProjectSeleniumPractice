@@ -69,6 +69,12 @@ public class OptionsManager {
         
         profile.setPreference("network.proxy.type", 0);
         
+        //SSL Certificates
+        
+        profile.setAcceptUntrustedCertificates(true);
+        profile.setAssumeUntrustedCertificateIssuer(true);
+
+        
         //Set Firefox profile to capabilities
         
         options.setCapability(FirefoxDriver.PROFILE, profile);
