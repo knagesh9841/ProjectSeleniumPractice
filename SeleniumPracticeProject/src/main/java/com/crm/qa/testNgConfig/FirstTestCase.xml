@@ -54,7 +54,7 @@
  </classes>
 </test> -->
 
-<test name="testngTest">
+<!-- <test name="testngTest">
  <parameter name="browser" value="ie"/>
  <classes>
  	<class name="com.crm.qa.testcases.DownloadTest">
@@ -64,7 +64,21 @@
 	</class>
 
  </classes>
- </test>
+ </test> -->
  
+ 
+ <test name="testngTest1">
+ <parameter name="browser" value="edge"/>
+ <groups>
+  	<dependencies>
+  		<group name="Second" depends-on="First"/>
+  	</dependencies>
+  </groups>
+ 
+ <classes>
+ 	<class name="com.crm.qa.testcases.LoginTest" />
+ </classes>
+</test>
+
  
 </suite>

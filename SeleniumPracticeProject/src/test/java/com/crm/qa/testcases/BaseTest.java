@@ -1,8 +1,6 @@
 package com.crm.qa.testcases;
 
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
-
 import com.crm.qa.pages.AddressPage;
 import com.crm.qa.pages.DownloadPage;
 import com.crm.qa.pages.FrameTestingPage;
@@ -15,6 +13,7 @@ import org.apache.log4j.Logger;
 import org.apache.log4j.xml.DOMConfigurator;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
 
 public class BaseTest {
  
