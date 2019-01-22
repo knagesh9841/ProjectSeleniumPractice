@@ -1,20 +1,27 @@
 package com.crm.qa.testcases;
 
+import java.util.HashMap;
+
 import org.apache.log4j.Logger;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+
+import com.crm.qa.exceltestdata.ExcelUtils;
 
 public class LoginTest extends BaseTest{
 	
 	String atitle;
+	Object loginDetail[][];
+	HashMap<String, String> testData = new HashMap<String,String>();
 
 	private static Logger Log = Logger.getLogger(LoginTest.class.getName());
 		
-	  @Test(description="Login To Application.",priority = 0,groups={"First"})
-	  public void basicTest() throws InterruptedException {
+	  @Test(description="Login To Application.",priority = 0,groups={"First"},dataProvider = "LoginData")
+	  public void basicTest(String username, String password) throws InterruptedException {
 		
 		  Log.info("-----------Execution started for Method basicTest.-------------");
 		  
-		  atitle = loginPage_Object.loginToApplication("knagesh143s@gmail.com", "knagesh143s");
+		  atitle = loginPage_Object.loginToApplication(username, password);
 		  loginPage_Object.verifyTitle(atitle, "Address Book");
 		 
 		  Log.info("-----------Execution Completed for Method basicTest.-------------");
@@ -40,6 +47,17 @@ public class LoginTest extends BaseTest{
 		  Log.info("-----------Execution started for Method verifyTitle.-------------");
 		  homePage_Object.verifyTitle(atitle, "Address Book - Sign I");
 		  Log.info("-----------Execution Completed for Method verifyTitle.-------------");
+	  }
+	  
+	  @DataProvider (name = "LoginData")
+	  public Object[][] loginData () {
+		  
+		  testData = ExcelUtils.loadData("ExcelTestDataFile.xlsx", "LoginDetails", 1);
+		  loginDetail = new Object[1][2];
+		  loginDetail[0][0] = ExcelUtils.getData(testData, "UserName");
+		  loginDetail[0][1] = ExcelUtils.getData(testData, "Password");
+
+		  return loginDetail;
 	  }
 		  
 }

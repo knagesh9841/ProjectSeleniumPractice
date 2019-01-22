@@ -12,7 +12,9 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
@@ -56,39 +58,44 @@ public class DownloadPage {
 		/**
 		 * This Method will download the file.
 		 */
-		
+
 		public void verifyDownloadedFile()
 		{
 			driver.get(PropertyManager.getInstance().getConfigTimeData("downloadurl"));
-			
+
 			Log.info("-----------Navigating to URL-------------");
-			
+
 			//Utilities.maximizeWindow();
 			WaitUtilities.waitForPageToBeLoad(driver);
-			
+
 			WaitUtilities.waitForPageTitleIs(driver, "Demo Form for practicing Selenium Automation", 30);
-			
+
 			deleteDownloadFolderPath();
 			String path = createFolderPath();
+
 			
-			//Firefox and Chrome Browser
-			//downloadBtn.click();
-			//WaitUtilities.waitForSleep(5000L);
-			
-			
-			// Edge Browser
-			//Utilities.downloadFileWithSikuli(downloadBtn, driver, System.getProperty("user.dir") + "\\downloadImages\\SaveBtn.PNG", System.getProperty("user.dir") + "\\downloadImages\\CloseBtn.PNG");
-			//WaitUtilities.waitForSleep(10000L);
-			
-			// IE Browser
-			
-			Utilities.scrollIntoViewByJavaScriptExecutor(driver, downloadBtn);
-			Utilities.downloadFileWithSikuli(downloadBtn, driver, System.getProperty("user.dir") + "\\downloadImages\\SaveBtnIE.PNG", System.getProperty("user.dir") + "\\downloadImages\\CloseBtnIE.PNG");
-			WaitUtilities.waitForSleep(10000L);
-			
+			if(driver instanceof FirefoxDriver || driver instanceof ChromeDriver)
+			{
+				downloadBtn.click();
+				WaitUtilities.waitForSleep(5000L);
+				
+			}else if(driver instanceof EdgeDriver)
+			{
+				Utilities.downloadFileWithSikuli(downloadBtn, driver, System.getProperty("user.dir") + "\\downloadImages\\SaveBtn.PNG", System.getProperty("user.dir") + "\\downloadImages\\CloseBtn.PNG");
+				WaitUtilities.waitForSleep(10000L);
+
+			}else if(driver instanceof InternetExplorerDriver)
+			{
+				Utilities.scrollIntoViewByJavaScriptExecutor(driver, downloadBtn);
+				Utilities.downloadFileWithSikuli(downloadBtn, driver,
+						System.getProperty("user.dir") + "\\downloadImages\\SaveBtnIE.PNG",
+						System.getProperty("user.dir") + "\\downloadImages\\CloseBtnIE.PNG");
+				WaitUtilities.waitForSleep(10000L);
+			}
+
 			export(path);
 			verifyFileisCopiedOrNot(path+ File.separator + "Test-File-to-Download.xlsx");
-			
+
 		}
 		
 		
