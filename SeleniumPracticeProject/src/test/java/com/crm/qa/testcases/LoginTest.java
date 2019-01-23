@@ -16,7 +16,7 @@ public class LoginTest extends BaseTest{
 
 	private static Logger Log = Logger.getLogger(LoginTest.class.getName());
 		
-	  @Test(description="Login To Application.",priority = 0,groups={"First"},dataProvider = "LoginData")
+	  @Test(description="Login To Application.",dataProvider = "LoginData")
 	  public void basicTest(String username, String password) throws InterruptedException {
 		
 		  Log.info("-----------Execution started for Method basicTest.-------------");
@@ -27,7 +27,7 @@ public class LoginTest extends BaseTest{
 		  Log.info("-----------Execution Completed for Method basicTest.-------------");
 	  }
 	  
-	  @Test(description="Enter Address,Verify Address,Delete Address,Verify Deleted Address.",dependsOnMethods = {"basicTest"},priority = 1,groups={"Second"})
+	  @Test(description="Enter Address,Verify Address,Delete Address,Verify Deleted Address.",dependsOnMethods = {"basicTest"})
 	  public void verifyAddressTest()
 	  {
 		  Log.info("-----------Execution started for Method verifyAddressTest.-------------");

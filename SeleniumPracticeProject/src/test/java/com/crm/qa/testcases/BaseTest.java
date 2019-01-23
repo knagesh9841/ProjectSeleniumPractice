@@ -12,8 +12,8 @@ import com.crm.qa.util.BrowserFactory;
 import org.apache.log4j.Logger;
 import org.apache.log4j.xml.DOMConfigurator;
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 
 public class BaseTest {
  
@@ -27,7 +27,7 @@ public class BaseTest {
 	DownloadPage downloadPage_Object;
 	private static Logger Log = Logger.getLogger(BaseTest.class.getName());
 	
-  @BeforeTest
+  @BeforeClass
   @Parameters({ "browser" })
   public void setUp(String browser) {
 	  
@@ -47,7 +47,7 @@ public class BaseTest {
 	  
   }
 
-  @AfterTest
+  @AfterClass
   public void tearDown() {
 	  driver.quit();
 	  Log.info("-----------Browser is Closed.-------------");

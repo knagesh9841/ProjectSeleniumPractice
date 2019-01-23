@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="SeleniumTesting">
+
+	<listeners>
+        <listener class-name="com.crm.qa.listeners.TestListener"/>
+    </listeners>
+    
+<test name="testngTest">
+ <parameter name="browser" value="edge"/>
+ <classes>
+ 	<class name="com.crm.qa.testcases.WindowTest" />
+ 	<class name="com.crm.qa.testcases.DownloadTest" />
+ </classes>
+ </test>
+  
+</suite>
+
+ 

@@ -67,7 +67,21 @@
  </classes>
  </test>
  
+  
+<!-- when executing this don't use Priority in test methods --> 
+<test name="testngTest">
+ <parameter name="browser" value="edge"/>
+ <classes>
+ 	<class name="com.crm.qa.testcases.LoginTest" />
+ 	<class name="com.crm.qa.testcases.FrameTest" />
+ 	<class name="com.crm.qa.testcases.MenuSelectionTest" />
+ 	<class name="com.crm.qa.testcases.WindowTest" />
+ 	<class name="com.crm.qa.testcases.DownloadTest" />
+ </classes>
+</test>
+  
  
 
  
 </suite>
+
