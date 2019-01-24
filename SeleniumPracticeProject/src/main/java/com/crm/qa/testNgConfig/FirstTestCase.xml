@@ -69,7 +69,7 @@
  
   
 <!-- when executing this don't use Priority in test methods --> 
-<test name="testngTest">
+<!-- <test name="testngTest">
  <parameter name="browser" value="edge"/>
  <classes>
  	<class name="com.crm.qa.testcases.LoginTest" />
@@ -78,7 +78,7 @@
  	<class name="com.crm.qa.testcases.WindowTest" />
  	<class name="com.crm.qa.testcases.DownloadTest" />
  </classes>
-</test>
+</test> -->
   
  
 

@@ -29,7 +29,7 @@ public class BaseTest {
 	
   @BeforeClass
   @Parameters({ "browser" })
-  public void setUp(String browser) {
+  public synchronized void setUp(String browser) {
 	  
 	  DOMConfigurator.configure(System.getProperty("user.dir") + "\\src\\main\\java\\com\\crm\\qa\\resources\\config\\log4j.xml");
 	  
@@ -48,7 +48,7 @@ public class BaseTest {
   }
 
   @AfterClass
-  public void tearDown() {
+  public synchronized void tearDown() {
 	  driver.quit();
 	  Log.info("-----------Browser is Closed.-------------");
   }
