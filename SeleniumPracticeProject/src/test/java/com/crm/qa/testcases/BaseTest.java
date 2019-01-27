@@ -10,7 +10,6 @@ import com.crm.qa.pages.MenuSelectionPage;
 import com.crm.qa.pages.WindowTestingPage;
 import com.crm.qa.util.BrowserFactory;
 import org.apache.log4j.Logger;
-import org.apache.log4j.xml.DOMConfigurator;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -31,7 +30,6 @@ public class BaseTest {
   @Parameters({ "browser" })
   public synchronized void setUp(String browser) {
 	  
-	  DOMConfigurator.configure(System.getProperty("user.dir") + "\\src\\main\\java\\com\\crm\\qa\\resources\\config\\log4j.xml");
 	  
 	  BrowserFactory.setDriver(browser);
 	  driver = BrowserFactory.getDriver();
