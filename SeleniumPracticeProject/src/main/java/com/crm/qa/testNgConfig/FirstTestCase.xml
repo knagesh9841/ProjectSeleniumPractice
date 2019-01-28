@@ -3,7 +3,9 @@
 <suite name="SeleniumTesting">
 
 	<listeners>
+		<listener class-name="com.crm.qa.listeners.SuiteListener"/>
         <listener class-name="com.crm.qa.listeners.TestListener"/>
+        <listener class-name="com.crm.qa.listeners.InvokedMethodListener"/>
     </listeners>
     
  <test name="testngTest1">

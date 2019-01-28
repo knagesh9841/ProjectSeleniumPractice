@@ -323,12 +323,12 @@ public class AddressPage {
 			if(tabledata.get(3).getText().equals(testDataHolder))
 			{
 				Assert.assertTrue(true);
-				TestListener.info("State Name should be GA.", "State Name is "+tabledata.get(2).getText()+".", driver, false);
+				TestListener.info("State Name should be GA.", "State Name is "+tabledata.get(3).getText()+".", driver, false);
 				
-				Log.info("-----------City Name is GA.-------------");
+				Log.info("-----------State Name is GA.-------------");
 			}else
 			{
-				TestListener.fail("State Name should be GA.", "State Name is "+tabledata.get(2).getText()+".", driver);
+				TestListener.fail("State Name should be GA.", "State Name is "+tabledata.get(3).getText()+".", driver);
 				Assert.assertTrue(false);
 				
 				Log.info("-----------State Name is Not Matched.-------------");
