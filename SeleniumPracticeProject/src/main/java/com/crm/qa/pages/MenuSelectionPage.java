@@ -14,8 +14,8 @@ import org.testng.Assert;
 
 import static com.crm.qa.objectrepository.ObjectRepository.*;
 
-import com.crm.qa.listeners.TestListener;
 import com.crm.qa.util.PropertyManager;
+import com.crm.qa.util.Reporter;
 import com.crm.qa.util.Utilities;
 import com.crm.qa.util.WaitUtilities;
 
@@ -91,13 +91,13 @@ public class MenuSelectionPage {
 			if(aTitleName.equals(titleName))
 			{
 				Assert.assertTrue(true);
-				TestListener.pass("Cucumber Tutorial for Beginners page should be Displayed Successfully.", "Cucumber Tutorial for Beginners page is Displayed Successfully.", driver, true);
+				Reporter.pass("Cucumber Tutorial for Beginners page should be Displayed Successfully.", "Cucumber Tutorial for Beginners page is Displayed Successfully.", driver, true);
 				
 				Log.info("-----------Cucumber Tutorial for Beginners Page is Opened. -------------");
 				
 			}else
 			{
-				TestListener.fail("Cucumber Tutorial for Beginners page should be Displayed Successfully.", "Cucumber Tutorial for Beginners page is not Displayed Successfully.", driver);
+				Reporter.fail("Cucumber Tutorial for Beginners page should be Displayed Successfully.", "Cucumber Tutorial for Beginners page is not Displayed Successfully.", driver);
 				Assert.assertTrue(false);
 				
 				Log.info("-----------Cucumber Tutorial for Beginners Page is not Opened.------------");

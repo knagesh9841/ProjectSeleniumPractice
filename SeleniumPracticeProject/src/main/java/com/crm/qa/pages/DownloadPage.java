@@ -21,8 +21,8 @@ import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 
-import com.crm.qa.listeners.TestListener;
 import com.crm.qa.util.PropertyManager;
+import com.crm.qa.util.Reporter;
 import com.crm.qa.util.Utilities;
 import com.crm.qa.util.WaitUtilities;
 
@@ -197,12 +197,12 @@ public class DownloadPage {
 				if(file.exists())
 				{
 					Assert.assertTrue(true);
-					TestListener.pass("File should be exists at Location "+path+".", "File is exists at Location "+path+".", driver, true);
+					Reporter.pass("File should be exists at Location "+path+".", "File is exists at Location "+path+".", driver, true);
 					Log.info("----------File is exists at Location "+path+".--------------");
 					
 				}else
 				{
-					TestListener.fail("File should be exists at Location "+path+".", "File is not exists at Location "+path+".", driver);
+					Reporter.fail("File should be exists at Location "+path+".", "File is not exists at Location "+path+".", driver);
 					Assert.assertTrue(false);
 					 
 					Log.info("-----------File is not exists at Location "+path+".-------------");

@@ -21,8 +21,9 @@ import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
-import com.crm.qa.listeners.TestListener;
+
 import com.crm.qa.util.PropertyManager;
+import com.crm.qa.util.Reporter;
 import com.crm.qa.util.Utilities;
 import com.crm.qa.util.WaitUtilities;
 
@@ -140,7 +141,7 @@ public class WindowTestingPage {
 						Log.info("No of Working links = "+workLinks+"");
 						Log.info("No of Broken links = "+brokenLinks+"");
 						
-						TestListener.info("New opened Window Title should be "+titleName+".", "New opened Window Title is "+aTitle+".", windowDriver, true);
+						Reporter.info("New opened Window Title should be "+titleName+".", "New opened Window Title is "+aTitle+".", windowDriver, true);
 						
 						windowDriver.close();
 						
@@ -196,7 +197,7 @@ public class WindowTestingPage {
 						Log.info("No of Working links = "+workLinks+"");
 						Log.info("No of Broken links = "+brokenLinks+"");
 						
-						TestListener.info("New opened Tab Title should be "+titleName+".", "New opened tab Title is "+aTitle+".", windowDriver, true);
+						Reporter.info("New opened Tab Title should be "+titleName+".", "New opened tab Title is "+aTitle+".", windowDriver, true);
 						
 						windowDriver.close();
 					}
@@ -330,7 +331,7 @@ public class WindowTestingPage {
 					
 					driver.switchTo().window(mainWindow);
 					Log.info("-----------Switched to Main Window.----------------");
-					TestListener.info("should be Switch to Main window.", "Successfully Switch to main window.", driver, true);
+					Reporter.info("should be Switch to Main window.", "Successfully Switch to main window.", driver, true);
 					
 				} catch (Exception e) {
 					Log.error("----------Exception Occured while Switching to Window/Tab---------", e);

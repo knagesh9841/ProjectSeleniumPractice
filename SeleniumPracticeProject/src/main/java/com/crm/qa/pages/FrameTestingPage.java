@@ -8,8 +8,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
-import com.crm.qa.listeners.TestListener;
 import com.crm.qa.util.PropertyManager;
+import com.crm.qa.util.Reporter;
 import com.crm.qa.util.Utilities;
 import com.crm.qa.util.WaitUtilities;
 
@@ -70,11 +70,11 @@ public class FrameTestingPage {
 					{
 						checkBox.click();
 						
-						TestListener.info("Checkbox should be checked.", "Checkbox is checked.", BottomFrameDriver, false);
+						Reporter.info("Checkbox should be checked.", "Checkbox is checked.", BottomFrameDriver, false);
 						
 					}else
 					{
-						TestListener.info("Checkbox should be checked.", "Checkbox is allready checked.", BottomFrameDriver, false);
+						Reporter.info("Checkbox should be checked.", "Checkbox is allready checked.", BottomFrameDriver, false);
 					}
 				}else
 				{
@@ -82,10 +82,10 @@ public class FrameTestingPage {
 					{
 						checkBox.click();
 
-						TestListener.info("Checkbox should be unchecked.", "Checkbox is unchecked.", BottomFrameDriver, false);
+						Reporter.info("Checkbox should be unchecked.", "Checkbox is unchecked.", BottomFrameDriver, false);
 					}else
 					{
-						TestListener.info("Checkbox should be unchecked.", "Checkbox is allready unchecked.", BottomFrameDriver, false);
+						Reporter.info("Checkbox should be unchecked.", "Checkbox is allready unchecked.", BottomFrameDriver, false);
 					}
 				}
 				
@@ -96,7 +96,7 @@ public class FrameTestingPage {
 				
 				topicNameElement.sendKeys(topicaName);
 				
-				TestListener.info("Topic Name should be Set to "+topicaName+".", "Topic Name should is Set to "+topicaName+".", TopFrameDriver, false);
+				Reporter.info("Topic Name should be Set to "+topicaName+".", "Topic Name should is Set to "+topicaName+".", TopFrameDriver, false);
 				
 				TopFrameDriver = TopFrameDriver.switchTo().parentFrame();
 				
@@ -106,12 +106,12 @@ public class FrameTestingPage {
 				if(actualheadingName.equals(headingName))
 				{
 					Assert.assertTrue(true);
-					TestListener.info("Heading Name should be "+headingName+".", "Heading Name is "+actualheadingName+".", TopFrameDriver, false);
+					Reporter.info("Heading Name should be "+headingName+".", "Heading Name is "+actualheadingName+".", TopFrameDriver, false);
 					
 					Log.info("-----------Heading Name is "+headingName+".-------------");
 				}else
 				{
-					TestListener.fail("Heading Name should be "+headingName+".", "Heading Name is "+actualheadingName+".", TopFrameDriver);
+					Reporter.fail("Heading Name should be "+headingName+".", "Heading Name is "+actualheadingName+".", TopFrameDriver);
 					Assert.assertTrue(false);
 					
 					Log.info("-----------heading Name is Not Matched.-------------");
@@ -125,7 +125,7 @@ public class FrameTestingPage {
 				
 				selectElement.selectByVisibleText(animalName);
 				
-				TestListener.info("Animal Name should be Set to "+animalName+".", "Animal Name should is Set to "+animalName+".", TopFrameDriver, true);
+				Reporter.info("Animal Name should be Set to "+animalName+".", "Animal Name should is Set to "+animalName+".", TopFrameDriver, true);
 				
 				
 			} catch (Exception e) {

@@ -6,7 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import static com.crm.qa.objectrepository.ObjectRepository.*;
-import com.crm.qa.listeners.TestListener;
+
+import com.crm.qa.util.Reporter;
 import com.crm.qa.util.WaitUtilities;
 
 public class HomePage {
@@ -68,12 +69,12 @@ public class HomePage {
 				if(aTitle.equals(eTitle))
 				{
 					Assert.assertTrue(true);
-					TestListener.pass("Home page should be Displayed Successfully after Logout.", "Home page is Displayed Successfully after Logout.", driver, true);
+					Reporter.pass("Home page should be Displayed Successfully after Logout.", "Home page is Displayed Successfully after Logout.", driver, true);
 					Log.info("-----------Logout Title Page is matched-------------");
 					
 				}else
 				{
-					TestListener.fail("Home page should be Displayed Successfully after Logout.", "Home page is not Displayed Successfully after Logout.", driver);
+					Reporter.fail("Home page should be Displayed Successfully after Logout.", "Home page is not Displayed Successfully after Logout.", driver);
 					Assert.assertTrue(false);
 					 
 					Log.info("-----------Logout Title Page is not matched-------------");

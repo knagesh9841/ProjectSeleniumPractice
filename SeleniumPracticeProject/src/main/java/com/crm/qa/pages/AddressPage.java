@@ -19,7 +19,7 @@ import org.testng.Assert;
 import static com.crm.qa.objectrepository.ObjectRepository.*;
 
 import com.crm.qa.exceltestdata.ExcelUtils;
-import com.crm.qa.listeners.TestListener;
+import com.crm.qa.util.Reporter;
 import com.crm.qa.util.Utilities;
 import com.crm.qa.util.WaitUtilities;
 
@@ -228,13 +228,13 @@ public class AddressPage {
 			if(aMessage.equals(eMessage))
 			{
 				Assert.assertTrue(true);
-				TestListener.pass("Address should be successfully created.", "Address is successfully created.", driver, true);
+				Reporter.pass("Address should be successfully created.", "Address is successfully created.", driver, true);
 				
 				Log.info("-----------Address is successfully created-------------");
 				
 			}else
 			{
-				TestListener.fail("Address should be successfully created.", "Address is not successfully created.", driver);
+				Reporter.fail("Address should be successfully created.", "Address is not successfully created.", driver);
 				Assert.assertTrue(false);
 				
 				Log.info("-----------Address is not successfully created.-------------");
@@ -275,12 +275,12 @@ public class AddressPage {
 			if(tabledata.get(0).getText().equals(testDataHolder))
 			{
 				Assert.assertTrue(true);
-				TestListener.info("First Name should be Nagesh.", "First Name is "+tabledata.get(0).getText()+".", driver, false);
+				Reporter.info("First Name should be Nagesh.", "First Name is "+tabledata.get(0).getText()+".", driver, false);
 				
 				Log.info("-----------First Name is Nagesh.-------------");
 			}else
 			{
-				TestListener.fail("First Name should be Nagesh.", "First Name is "+tabledata.get(0).getText()+".", driver);
+				Reporter.fail("First Name should be Nagesh.", "First Name is "+tabledata.get(0).getText()+".", driver);
 				Assert.assertTrue(false);
 				
 				Log.info("-----------First Name is Not Matched.-------------");
@@ -291,12 +291,12 @@ public class AddressPage {
 			if(tabledata.get(1).getText().equals(testDataHolder))
 			{
 				Assert.assertTrue(true);
-				TestListener.info("Last Name should be Kadam.", "Last Name is "+tabledata.get(1).getText()+".", driver, false);
+				Reporter.info("Last Name should be Kadam.", "Last Name is "+tabledata.get(1).getText()+".", driver, false);
 				
 				Log.info("-----------Last Name is Kadam.-------------");
 			}else
 			{
-				TestListener.fail("Last Name should be Kadam.", "Last Name is "+tabledata.get(1).getText()+".", driver);
+				Reporter.fail("Last Name should be Kadam.", "Last Name is "+tabledata.get(1).getText()+".", driver);
 				Assert.assertTrue(false);
 				
 				Log.info("-----------Last Name is Not Matched.-------------");
@@ -307,12 +307,12 @@ public class AddressPage {
 			if(tabledata.get(2).getText().equals(testDataHolder))
 			{
 				Assert.assertTrue(true);
-				TestListener.info("City Name should be Tq & Dist:-  Latur.", "City Name is "+tabledata.get(2).getText()+".", driver, false);
+				Reporter.info("City Name should be Tq & Dist:-  Latur.", "City Name is "+tabledata.get(2).getText()+".", driver, false);
 				
 				Log.info("-----------City Name is Tq & Dist:-  Latur.-------------");
 			}else
 			{
-				TestListener.fail("City Name should be Tq & Dist:-  Latur.", "City Name is "+tabledata.get(2).getText()+".", driver);
+				Reporter.fail("City Name should be Tq & Dist:-  Latur.", "City Name is "+tabledata.get(2).getText()+".", driver);
 				Assert.assertTrue(false);
 				
 				Log.info("-----------City Name is Not Matched.-------------");
@@ -323,12 +323,12 @@ public class AddressPage {
 			if(tabledata.get(3).getText().equals(testDataHolder))
 			{
 				Assert.assertTrue(true);
-				TestListener.info("State Name should be GA.", "State Name is "+tabledata.get(3).getText()+".", driver, false);
+				Reporter.info("State Name should be GA.", "State Name is "+tabledata.get(3).getText()+".", driver, false);
 				
 				Log.info("-----------State Name is GA.-------------");
 			}else
 			{
-				TestListener.fail("State Name should be GA.", "State Name is "+tabledata.get(3).getText()+".", driver);
+				Reporter.fail("State Name should be GA.", "State Name is "+tabledata.get(3).getText()+".", driver);
 				Assert.assertTrue(false);
 				
 				Log.info("-----------State Name is Not Matched.-------------");
@@ -385,13 +385,13 @@ public class AddressPage {
 			if(flag)
 			{
 				Assert.assertTrue(true);
-				TestListener.pass("Address wih Name Nagesh should be deleted successfully.", "Address wih Name Nagesh is deleted successfully..", driver, true);
+				Reporter.pass("Address wih Name Nagesh should be deleted successfully.", "Address wih Name Nagesh is deleted successfully..", driver, true);
 				
 				Log.info("-----------Address wih Name Nagesh is deleted successfully.-------------");
 				
 			}else
 			{
-				TestListener.fail("Address wih Name Nagesh should be deleted successfully.", "Address wih Name Nagesh is not deleted successfully.", driver);
+				Reporter.fail("Address wih Name Nagesh should be deleted successfully.", "Address wih Name Nagesh is not deleted successfully.", driver);
 				Assert.assertTrue(false);
 				
 				Log.info("-----------Address wih Name Nagesh is deleted successfully.-------------");
@@ -440,12 +440,12 @@ public class AddressPage {
 			if(flag)
 			{
 				Assert.assertTrue(true);
-				TestListener.pass("Address wih Name Nagesh should not be present in table.", "Address wih Name Nagesh is not present in table.", driver, true);
+				Reporter.pass("Address wih Name Nagesh should not be present in table.", "Address wih Name Nagesh is not present in table.", driver, true);
 				
 				Log.info("-----------Address wih Name Nagesh is not  present in table.-------------");
 			}else
 			{
-				TestListener.fail("Address wih Name Nagesh should not be present in table.", "Address wih Name Nagesh is present in table.", driver);
+				Reporter.fail("Address wih Name Nagesh should not be present in table.", "Address wih Name Nagesh is present in table.", driver);
 				Assert.assertTrue(false);
 				
 				Log.info("-----------Address wih Name Nagesh is not deleted successfully.-------------");
