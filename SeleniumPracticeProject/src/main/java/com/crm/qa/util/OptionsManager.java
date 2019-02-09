@@ -23,16 +23,22 @@ public class OptionsManager {
 	    chromePrefs.put("profile.default_content_settings.popups", 0);
 	    chromePrefs.put("download.default_directory",
 				System.getProperty("user.dir") + File.separator + "externalFiles" + File.separator + "downloadFiles");
+	    chromePrefs.put("profile.default_content_setting_values.notifications", 2);
+	    chromePrefs.put("credentials_enable_service", false);
+	    chromePrefs.put("profile.password_manager_enabled", false);
+
 	       
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--start-maximized");
         options.addArguments("--ignore-certificate-errors");
         options.addArguments("--disable-popup-blocking");
-        options.setExperimentalOption("prefs", chromePrefs);
-	    options.addArguments("--test-type");
+        options.addArguments("--test-type");
 	    options.addArguments("--disable-extensions"); //to disable browser extension popup
+	    options.addArguments("--disable-web-security");
+	    options.addArguments("--no-proxy-server");
 	    options.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
-        
+	    options.setExperimentalOption("prefs", chromePrefs);
+	    
         //options.addArguments("--incognito");
         
         

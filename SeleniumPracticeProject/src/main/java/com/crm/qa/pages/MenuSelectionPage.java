@@ -10,8 +10,6 @@ import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.Assert;
-
 import static com.crm.qa.objectrepository.ObjectRepository.*;
 
 import com.crm.qa.util.PropertyManager;
@@ -90,15 +88,15 @@ public class MenuSelectionPage {
 			
 			if(aTitleName.equals(titleName))
 			{
-				Assert.assertTrue(true);
+				
 				Reporter.pass("Cucumber Tutorial for Beginners page should be Displayed Successfully.", "Cucumber Tutorial for Beginners page is Displayed Successfully.", driver, true);
 				
 				Log.info("-----------Cucumber Tutorial for Beginners Page is Opened. -------------");
 				
 			}else
 			{
-				Reporter.fail("Cucumber Tutorial for Beginners page should be Displayed Successfully.", "Cucumber Tutorial for Beginners page is not Displayed Successfully.", driver);
-				Assert.assertTrue(false);
+				Reporter.fail("Cucumber Tutorial for Beginners page should be Displayed Successfully.", "Cucumber Tutorial for Beginners page is not Displayed Successfully.", driver, false);
+				
 				
 				Log.info("-----------Cucumber Tutorial for Beginners Page is not Opened.------------");
 			}

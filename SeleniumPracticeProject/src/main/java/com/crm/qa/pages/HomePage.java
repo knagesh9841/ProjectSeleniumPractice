@@ -4,7 +4,6 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.Assert;
 import static com.crm.qa.objectrepository.ObjectRepository.*;
 
 import com.crm.qa.util.Reporter;
@@ -68,15 +67,13 @@ public class HomePage {
 			try {
 				if(aTitle.equals(eTitle))
 				{
-					Assert.assertTrue(true);
+					
 					Reporter.pass("Home page should be Displayed Successfully after Logout.", "Home page is Displayed Successfully after Logout.", driver, true);
 					Log.info("-----------Logout Title Page is matched-------------");
 					
 				}else
 				{
-					Reporter.fail("Home page should be Displayed Successfully after Logout.", "Home page is not Displayed Successfully after Logout.", driver);
-					Assert.assertTrue(false);
-					 
+					Reporter.fail("Home page should be Displayed Successfully after Logout.", "Home page is not Displayed Successfully after Logout.", driver, false);
 					Log.info("-----------Logout Title Page is not matched-------------");
 				}
 			} catch (Exception e) {

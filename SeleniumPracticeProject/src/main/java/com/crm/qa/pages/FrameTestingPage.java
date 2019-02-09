@@ -6,8 +6,6 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
-import org.testng.Assert;
-
 import com.crm.qa.util.PropertyManager;
 import com.crm.qa.util.Reporter;
 import com.crm.qa.util.Utilities;
@@ -105,14 +103,14 @@ public class FrameTestingPage {
 				
 				if(actualheadingName.equals(headingName))
 				{
-					Assert.assertTrue(true);
+					
 					Reporter.info("Heading Name should be "+headingName+".", "Heading Name is "+actualheadingName+".", TopFrameDriver, false);
 					
 					Log.info("-----------Heading Name is "+headingName+".-------------");
 				}else
 				{
-					Reporter.fail("Heading Name should be "+headingName+".", "Heading Name is "+actualheadingName+".", TopFrameDriver);
-					Assert.assertTrue(false);
+					Reporter.fail("Heading Name should be "+headingName+".", "Heading Name is "+actualheadingName+".", TopFrameDriver, false);
+					
 					
 					Log.info("-----------heading Name is Not Matched.-------------");
 				}

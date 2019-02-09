@@ -15,7 +15,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
-import org.testng.Assert;
 import static com.crm.qa.objectrepository.ObjectRepository.*;
 
 import com.crm.qa.exceltestdata.ExcelUtils;
@@ -227,15 +226,14 @@ public class AddressPage {
 			
 			if(aMessage.equals(eMessage))
 			{
-				Assert.assertTrue(true);
+				
 				Reporter.pass("Address should be successfully created.", "Address is successfully created.", driver, true);
 				
 				Log.info("-----------Address is successfully created-------------");
 				
 			}else
 			{
-				Reporter.fail("Address should be successfully created.", "Address is not successfully created.", driver);
-				Assert.assertTrue(false);
+				Reporter.fail("Address should be successfully created.", "Address is not successfully created.", driver, false);
 				
 				Log.info("-----------Address is not successfully created.-------------");
 			}
@@ -274,14 +272,14 @@ public class AddressPage {
 			
 			if(tabledata.get(0).getText().equals(testDataHolder))
 			{
-				Assert.assertTrue(true);
+				
 				Reporter.info("First Name should be Nagesh.", "First Name is "+tabledata.get(0).getText()+".", driver, false);
 				
 				Log.info("-----------First Name is Nagesh.-------------");
 			}else
 			{
-				Reporter.fail("First Name should be Nagesh.", "First Name is "+tabledata.get(0).getText()+".", driver);
-				Assert.assertTrue(false);
+				Reporter.fail("First Name should be Nagesh.", "First Name is "+tabledata.get(0).getText()+".", driver, false);
+				
 				
 				Log.info("-----------First Name is Not Matched.-------------");
 			}
@@ -290,14 +288,14 @@ public class AddressPage {
 			
 			if(tabledata.get(1).getText().equals(testDataHolder))
 			{
-				Assert.assertTrue(true);
+				
 				Reporter.info("Last Name should be Kadam.", "Last Name is "+tabledata.get(1).getText()+".", driver, false);
 				
 				Log.info("-----------Last Name is Kadam.-------------");
 			}else
 			{
-				Reporter.fail("Last Name should be Kadam.", "Last Name is "+tabledata.get(1).getText()+".", driver);
-				Assert.assertTrue(false);
+				Reporter.fail("Last Name should be Kadam.", "Last Name is "+tabledata.get(1).getText()+".", driver, false);
+				
 				
 				Log.info("-----------Last Name is Not Matched.-------------");
 			}
@@ -306,14 +304,14 @@ public class AddressPage {
 		
 			if(tabledata.get(2).getText().equals(testDataHolder))
 			{
-				Assert.assertTrue(true);
+				
 				Reporter.info("City Name should be Tq & Dist:-  Latur.", "City Name is "+tabledata.get(2).getText()+".", driver, false);
 				
 				Log.info("-----------City Name is Tq & Dist:-  Latur.-------------");
 			}else
 			{
-				Reporter.fail("City Name should be Tq & Dist:-  Latur.", "City Name is "+tabledata.get(2).getText()+".", driver);
-				Assert.assertTrue(false);
+				Reporter.fail("City Name should be Tq & Dist:-  Latur.", "City Name is "+tabledata.get(2).getText()+".", driver, false);
+				
 				
 				Log.info("-----------City Name is Not Matched.-------------");
 			}
@@ -322,14 +320,14 @@ public class AddressPage {
 			
 			if(tabledata.get(3).getText().equals(testDataHolder))
 			{
-				Assert.assertTrue(true);
+				
 				Reporter.info("State Name should be GA.", "State Name is "+tabledata.get(3).getText()+".", driver, false);
 				
 				Log.info("-----------State Name is GA.-------------");
 			}else
 			{
-				Reporter.fail("State Name should be GA.", "State Name is "+tabledata.get(3).getText()+".", driver);
-				Assert.assertTrue(false);
+				Reporter.fail("State Name should be GA.", "State Name is "+tabledata.get(3).getText()+".", driver, false);
+				
 				
 				Log.info("-----------State Name is Not Matched.-------------");
 			}
@@ -384,15 +382,15 @@ public class AddressPage {
 			
 			if(flag)
 			{
-				Assert.assertTrue(true);
+				
 				Reporter.pass("Address wih Name Nagesh should be deleted successfully.", "Address wih Name Nagesh is deleted successfully..", driver, true);
 				
 				Log.info("-----------Address wih Name Nagesh is deleted successfully.-------------");
 				
 			}else
 			{
-				Reporter.fail("Address wih Name Nagesh should be deleted successfully.", "Address wih Name Nagesh is not deleted successfully.", driver);
-				Assert.assertTrue(false);
+				Reporter.fail("Address wih Name Nagesh should be deleted successfully.", "Address wih Name Nagesh is not deleted successfully.", driver, false);
+				
 				
 				Log.info("-----------Address wih Name Nagesh is deleted successfully.-------------");
 			}
@@ -439,14 +437,14 @@ public class AddressPage {
 			
 			if(flag)
 			{
-				Assert.assertTrue(true);
+				
 				Reporter.pass("Address wih Name Nagesh should not be present in table.", "Address wih Name Nagesh is not present in table.", driver, true);
 				
 				Log.info("-----------Address wih Name Nagesh is not  present in table.-------------");
 			}else
 			{
-				Reporter.fail("Address wih Name Nagesh should not be present in table.", "Address wih Name Nagesh is present in table.", driver);
-				Assert.assertTrue(false);
+				Reporter.fail("Address wih Name Nagesh should not be present in table.", "Address wih Name Nagesh is present in table.", driver, false);
+				
 				
 				Log.info("-----------Address wih Name Nagesh is not deleted successfully.-------------");
 			}
