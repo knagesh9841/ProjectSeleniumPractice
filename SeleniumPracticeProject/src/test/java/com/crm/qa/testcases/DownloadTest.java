@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 
 public class DownloadTest extends BaseTest{
 	
-	private static Logger Log = Logger.getLogger(BaseTest.class.getName());
+	private static Logger Log = Logger.getLogger(DownloadTest.class.getName());
 	
 	  @Test(description="Download Functionality.")
 	  

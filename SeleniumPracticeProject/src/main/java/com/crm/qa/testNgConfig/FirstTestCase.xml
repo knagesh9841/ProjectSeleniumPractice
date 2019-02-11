@@ -67,8 +67,33 @@
 	</class>
 
  </classes>
+ </test> 
+ 
+ <test name="testngTest6">
+ <parameter name="browser" value="edge"/>
+ <classes>
+ 	<class name="com.crm.qa.testcases.BootStrapLoginWindowTest">
+		<methods>
+            <include name="bootStrapLoginWindowTest"></include> 
+        </methods>
+	</class>
+
+ </classes>
+ 
  </test>
  
+  <test name="testngTest7">
+ <parameter name="browser" value="edge"/>
+ <classes>
+ 	<class name="com.crm.qa.testcases.BootStrapDropdownTest">
+		<methods>
+            <include name="bootStrapDropdownTest"></include> 
+        </methods>
+	</class>
+
+ </classes>
+ 
+ </test>
   
 <!-- when executing this don't use Priority in test methods --> 
 <!-- <test name="testngTest">
