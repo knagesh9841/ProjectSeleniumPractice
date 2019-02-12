@@ -94,6 +94,20 @@
  </classes>
  
  </test>
+ 
+ 
+ <test name="testngTest8">
+ <parameter name="browser" value="edge"/>
+ <classes>
+ 	<class name="com.crm.qa.testcases.TooltipTest">
+		<methods>
+            <include name="tooltipTest"></include> 
+        </methods>
+	</class>
+
+ </classes>
+ 
+ </test>
   
 <!-- when executing this don't use Priority in test methods --> 
 <!-- <test name="testngTest">
