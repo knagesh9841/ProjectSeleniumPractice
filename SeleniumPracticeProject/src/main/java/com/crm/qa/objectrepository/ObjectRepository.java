@@ -22,5 +22,6 @@ public class ObjectRepository {
 	public static By bywebAutoToolMenu = By.xpath("//nav[@class='navigation']//span[text()='Web Automation Tools']");
 	public static By bycucumberTutMenu = By.xpath("//nav[@class='navigation']//span[text()='Cucumber Tutorial']");
 	public static By bybootstratLoginUserName = By.xpath("//input[@type='text']");
+	public static By bytooltipText = By.xpath("//span[@class='tooltiptext']");
 	
 }

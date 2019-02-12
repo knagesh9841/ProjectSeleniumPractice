@@ -9,6 +9,7 @@ import com.crm.qa.pages.FrameTestingPage;
 import com.crm.qa.pages.HomePage;
 import com.crm.qa.pages.LoginPage;
 import com.crm.qa.pages.MenuSelectionPage;
+import com.crm.qa.pages.TooltipPage;
 import com.crm.qa.pages.WindowTestingPage;
 import com.crm.qa.util.BrowserFactory;
 import org.apache.log4j.Logger;
@@ -28,6 +29,7 @@ public class BaseTest {
 	DownloadPage downloadPage_Object;
 	BootStrapLoginWindowPage bootStrapLoginWindowPage_Object;
 	BootStrapDropdownPage bootStrapDropdownPage_Object;
+	TooltipPage tooltipPage_Object;
 	private static Logger Log = Logger.getLogger(BaseTest.class.getName());
 	
   @BeforeClass
@@ -46,6 +48,7 @@ public class BaseTest {
 	  downloadPage_Object = new DownloadPage(driver);
 	  bootStrapLoginWindowPage_Object = new BootStrapLoginWindowPage(driver);
 	  bootStrapDropdownPage_Object = new BootStrapDropdownPage(driver);
+	  tooltipPage_Object = new TooltipPage(driver);
 	  Log.info("-----------Page object is initialized.-------------");
 	  
 	  
