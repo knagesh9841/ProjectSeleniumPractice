@@ -4,6 +4,7 @@ import org.testng.annotations.Parameters;
 import com.crm.qa.pages.AddressPage;
 import com.crm.qa.pages.BootStrapDropdownPage;
 import com.crm.qa.pages.BootStrapLoginWindowPage;
+import com.crm.qa.pages.CalendarPage;
 import com.crm.qa.pages.DownloadPage;
 import com.crm.qa.pages.FrameTestingPage;
 import com.crm.qa.pages.HomePage;
@@ -30,6 +31,7 @@ public class BaseTest {
 	BootStrapLoginWindowPage bootStrapLoginWindowPage_Object;
 	BootStrapDropdownPage bootStrapDropdownPage_Object;
 	TooltipPage tooltipPage_Object;
+	CalendarPage calendarPage_Object;
 	private static Logger Log = Logger.getLogger(BaseTest.class.getName());
 	
   @BeforeClass
@@ -49,6 +51,7 @@ public class BaseTest {
 	  bootStrapLoginWindowPage_Object = new BootStrapLoginWindowPage(driver);
 	  bootStrapDropdownPage_Object = new BootStrapDropdownPage(driver);
 	  tooltipPage_Object = new TooltipPage(driver);
+	  calendarPage_Object = new CalendarPage(driver);
 	  Log.info("-----------Page object is initialized.-------------");
 	  
 	  

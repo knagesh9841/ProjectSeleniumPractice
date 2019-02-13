@@ -8,7 +8,7 @@
         <listener class-name="com.crm.qa.listeners.InvokedMethodListener"/>
     </listeners>
     
- <test name="testngTest1">
+<test name="testngTest1">
  <parameter name="browser" value="edge"/>
  <classes>
  	<class name="com.crm.qa.testcases.LoginTest">
@@ -102,6 +102,19 @@
  	<class name="com.crm.qa.testcases.TooltipTest">
 		<methods>
             <include name="tooltipTest"></include> 
+        </methods>
+	</class>
+
+ </classes>
+ 
+ </test>
+  
+ <test name="testngTest9">
+ <parameter name="browser" value="edge"/>
+ <classes>
+ 	<class name="com.crm.qa.testcases.CalendarTest">
+		<methods>
+            <include name="calendarTest"></include> 
         </methods>
 	</class>
 
