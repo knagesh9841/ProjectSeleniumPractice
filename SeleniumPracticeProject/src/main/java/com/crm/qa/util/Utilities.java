@@ -7,6 +7,9 @@ import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.log4j.Logger;
@@ -285,6 +288,62 @@ public class Utilities {
 		}
 	}
 	
+	/**
+	 * This method will return Date based on days Specified and Date Format.
+	 * @param noOfdays
+	 * @param dateFormat
+	 * @return
+	 */
+	
+	public static String getRequiredDateBasedonDateFormat(int noOfdays, String dateFormat)
+	{
+		
+		String aDate=null;
+		
+		try {
+			
+			LocalDate currentDate = LocalDate.now();
+			LocalDate eDate = currentDate.plusDays(noOfdays);
+			DateTimeFormatter format = DateTimeFormatter.ofPattern(""+dateFormat+""); 
+			aDate = eDate.format(format);
+			
+		} catch (Exception e) {
+			Log.error("---------- Exception Occured while returning required Date.---------");
+		} 
+		
+		return aDate;
+		
+	}
+	
+	
+	/**
+	 * This method will return DateTime based on days Specified and DateTime Format.
+	 * @param noOfdays
+	 * @param dateFormat
+	 * @return
+	 */
+	
+	public static String getRequiredDateTimeBasedonDateTimeFormat(int noOfdays, String dateFormat)
+	{
+		
+		String aDateTime=null;
+		
+		try {
+			
+			LocalDateTime currentDateTime = LocalDateTime.now();
+			LocalDateTime eDateTime = currentDateTime.plusDays(noOfdays);
+			DateTimeFormatter format = DateTimeFormatter.ofPattern(""+dateFormat+""); 
+			aDateTime = eDateTime.format(format);
+			
+		} catch (Exception e) {
+			Log.error("---------- Exception Occured while returning required DateTime.---------");
+		} 
+		
+		return aDateTime;
+		
+	}
+	
+	
 	
 	/**
 	 * This will maximize the window
@@ -292,20 +351,24 @@ public class Utilities {
 	
 	public static void maximizeWindow()
 	{
-		BrowserFactory.getDriver().manage().window().maximize();
-		Dimension dim = new Dimension(Integer.parseInt(PropertyManager.getInstance().getConfigTimeData("window-width")),Integer.parseInt(PropertyManager.getInstance().getConfigTimeData("window-height")));
-		Point pnt = new Point(0, 0);
-		BrowserFactory.getDriver().manage().window().setSize(dim);
-		BrowserFactory.getDriver().manage().window().setPosition(pnt);
-		Log.info("-----------Window is Maximized.-------------");
-		BrowserFactory.getDriver().manage().timeouts().implicitlyWait(Long.valueOf(PropertyManager.getInstance().getConfigTimeData("implicitlywait")), TimeUnit.SECONDS);
-		Log.info("-----------implicitly Wait is set to "+PropertyManager.getInstance().getConfigTimeData("implicitlywait")+" Seconds.-------------");
-		BrowserFactory.getDriver().manage().timeouts().pageLoadTimeout(Long.valueOf(PropertyManager.getInstance().getConfigTimeData("pageLoadTimeout")), TimeUnit.SECONDS);
-		Log.info("-----------Page Load Timeout is set to "+PropertyManager.getInstance().getConfigTimeData("pageLoadTimeout")+" Seconds.-------------");
-		BrowserFactory.getDriver().manage().timeouts().setScriptTimeout(Long.valueOf(PropertyManager.getInstance().getConfigTimeData("scriptTimeOut")), TimeUnit.SECONDS);
-		Log.info("-----------Script Timeout is set to "+PropertyManager.getInstance().getConfigTimeData("scriptTimeOut")+" Seconds.-------------");
-		BrowserFactory.getDriver().manage().deleteAllCookies();
-		Log.info("-----------Cookies Deleted.-------------");
+		try {
+			BrowserFactory.getDriver().manage().window().maximize();
+			Dimension dim = new Dimension(Integer.parseInt(PropertyManager.getInstance().getConfigTimeData("window-width")),Integer.parseInt(PropertyManager.getInstance().getConfigTimeData("window-height")));
+			Point pnt = new Point(0, 0);
+			BrowserFactory.getDriver().manage().window().setSize(dim);
+			BrowserFactory.getDriver().manage().window().setPosition(pnt);
+			Log.info("-----------Window is Maximized.-------------");
+			BrowserFactory.getDriver().manage().timeouts().implicitlyWait(Long.valueOf(PropertyManager.getInstance().getConfigTimeData("implicitlywait")), TimeUnit.SECONDS);
+			Log.info("-----------implicitly Wait is set to "+PropertyManager.getInstance().getConfigTimeData("implicitlywait")+" Seconds.-------------");
+			BrowserFactory.getDriver().manage().timeouts().pageLoadTimeout(Long.valueOf(PropertyManager.getInstance().getConfigTimeData("pageLoadTimeout")), TimeUnit.SECONDS);
+			Log.info("-----------Page Load Timeout is set to "+PropertyManager.getInstance().getConfigTimeData("pageLoadTimeout")+" Seconds.-------------");
+			BrowserFactory.getDriver().manage().timeouts().setScriptTimeout(Long.valueOf(PropertyManager.getInstance().getConfigTimeData("scriptTimeOut")), TimeUnit.SECONDS);
+			Log.info("-----------Script Timeout is set to "+PropertyManager.getInstance().getConfigTimeData("scriptTimeOut")+" Seconds.-------------");
+			BrowserFactory.getDriver().manage().deleteAllCookies();
+			Log.info("-----------Cookies Deleted.-------------");
+		} catch (Exception e) {
+			Log.error("---------- Exception Occured while Maximizing window.---------");
+		}
 	}
 	
 	
