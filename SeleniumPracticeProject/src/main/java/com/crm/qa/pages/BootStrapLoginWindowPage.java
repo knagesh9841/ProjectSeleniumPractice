@@ -83,6 +83,8 @@ public class BootStrapLoginWindowPage {
 			
 			String aUserName = userName.getAttribute("value");
 			
+			uname = Utilities.fetchDataFromDatabase("select name from emp where id=1;");
+			
 			if(aUserName.equals(uname))
 			{
 				

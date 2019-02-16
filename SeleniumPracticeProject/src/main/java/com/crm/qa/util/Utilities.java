@@ -7,6 +7,11 @@ import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -340,6 +345,51 @@ public class Utilities {
 		} 
 		
 		return aDateTime;
+		
+	}
+	
+	/** 
+	 * This Method will execute Query on Oracle Database and return result.
+	 * @param query
+	 * @return
+	 */
+	
+	public static String fetchDataFromDatabase(String query)
+	{
+		String resultOfQuery=null;
+		Connection con=null;
+		Statement stmt=null;
+		
+		try {
+			
+			DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+			Log.info("------My Sql Driver is registered successfully------");
+			
+			con=DriverManager.getConnection("jdbc:mysql://localhost:3306/Nagesh","root","root");
+			Log.info("------Connection With Database is Established successfully------");
+			
+			stmt=con.createStatement();
+			Log.info("------Statement is created successfully------");
+			
+			ResultSet rs = null;
+			rs = stmt.executeQuery(query);
+			
+			while(rs.next())
+			{
+				resultOfQuery = rs.getString(1);
+				Log.info("------Record Found.------");
+			}
+			
+			con.close();
+			Log.info("-----Connection closed successfully------");
+			
+			
+		} catch (SQLException e) {
+			Log.error("---------- Exception Occured while Fetching data from Database.---------");
+		}
+		
+				
+		return resultOfQuery;
 		
 	}
 	
