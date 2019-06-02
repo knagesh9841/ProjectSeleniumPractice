@@ -32,7 +32,7 @@
 			<configuration>
 				<suiteXmlFiles>
 				<!-- TestNG suite XML files -->
-					<suiteXmlFile>.\src\main\java\com\crm\qa\testNgConfig\FirstTestCase.xml</suiteXmlFile>
+					<suiteXmlFile>${SuiteFileName}</suiteXmlFile>
 				</suiteXmlFiles>
 				<testFailureIgnore>true</testFailureIgnore>
 			</configuration>
