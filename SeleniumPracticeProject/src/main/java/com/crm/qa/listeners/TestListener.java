@@ -1,5 +1,7 @@
 package com.crm.qa.listeners;
 
+import java.io.IOException;
+
 import org.apache.log4j.Logger;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
@@ -66,6 +68,11 @@ public class TestListener implements ITestListener{
 		
 		Log.info("-----------Test Suite "+context.getName()+" is ending-----------");
 		extent.flush();
+		try {
+			ExtentManager.copyLatestExtentReport();
+		} catch (IOException e) {
+			
+		}
 	}
 	
 	/**
